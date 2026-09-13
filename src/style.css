@@ -1,0 +1,135 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-display: 'Anton', 'Haettenschweiler', sans-serif;
+  --font-label: 'Barlow Condensed', 'Arial Narrow', sans-serif;
+  --font-sans: 'Barlow', system-ui, sans-serif;
+
+  /* Broadcast palette: floodlit pitch at night. */
+  --color-ground: #071c14;
+  --color-panel: #0d3125;
+  --color-panel-lit: #134430;
+  --color-line: #1d5a42;
+  --color-amber: #ffb627;
+  --color-bone: #efe9d8;
+  --color-orange: #ff6b2c;
+  --color-cyan: #3fd0d4;
+
+  /* Map. Three tiers of light: dormant recedes, playable is lit, won is floodlit. */
+  --color-ocean: #05130f;
+  --color-dormant: #29332e;
+  --color-playable: #b4af9e;
+}
+
+html {
+  color-scheme: dark;
+}
+
+body {
+  /* Mown pitch stripes - wide and barely there, so it reads as grass not pattern. */
+  background-color: var(--color-ground);
+  background-image: repeating-linear-gradient(
+    90deg,
+    rgb(255 255 255 / 1.5%) 0 90px,
+    transparent 90px 180px
+  );
+  color: var(--color-bone);
+  font-family: var(--font-sans);
+}
+
+/* Graphics package: square corners, hairline rules, no soft shadows. */
+@utility panel {
+  background-color: var(--color-panel);
+  border: 1px solid var(--color-line);
+  border-radius: 3px;
+}
+
+@utility label-caps {
+  font-family: var(--font-label);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* Segment-display numerals. */
+@utility led {
+  font-family: var(--font-display);
+  color: var(--color-amber);
+  font-variant-numeric: tabular-nums;
+  text-shadow: 0 0 14px rgb(255 182 39 / 45%);
+}
+
+@utility led-orange {
+  font-family: var(--font-display);
+  color: var(--color-orange);
+  font-variant-numeric: tabular-nums;
+  text-shadow: 0 0 14px rgb(255 107 44 / 40%);
+}
+
+@utility led-cyan {
+  font-family: var(--font-display);
+  color: var(--color-cyan);
+  font-variant-numeric: tabular-nums;
+  text-shadow: 0 0 14px rgb(63 208 212 / 40%);
+}
+
+/*
+ * Map shapes carry tabindex for keyboard access, which makes Chrome draw a focus ring
+ * around the SVG bounding box - a blue rectangle straddling the whole country. Suppress it
+ * and show focus on the shape itself, so keyboard users still get an indicator.
+ */
+@utility map-target {
+  outline: none;
+
+  &:focus-visible {
+    stroke: var(--color-cyan);
+    stroke-width: 2.5px;
+  }
+}
+
+/* Won nations catch the floodlights. */
+@utility lit {
+  filter: drop-shadow(0 0 5px rgb(255 182 39 / 75%));
+}
+
+@utility hazard {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    var(--color-amber) 0 5px,
+    transparent 5px 11px
+  );
+}
+
+@utility btn {
+  font-family: var(--font-label);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background-color: var(--color-panel-lit);
+  border: 1px solid var(--color-line);
+  border-radius: 3px;
+  transition:
+    background-color 120ms ease,
+    border-color 120ms ease;
+
+  &:hover {
+    background-color: var(--color-line);
+    border-color: var(--color-amber);
+  }
+}
+
+@utility field {
+  background-color: var(--color-ground);
+  border: 1px solid var(--color-line);
+  border-radius: 3px;
+  color: var(--color-bone);
+
+  &::placeholder {
+    color: rgb(239 233 216 / 35%);
+  }
+
+  &:focus {
+    border-color: var(--color-amber);
+    outline: none;
+  }
+}

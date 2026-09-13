@@ -1,0 +1,1654 @@
+{
+  "ZWE": {
+    "point": [
+      29.926,
+      -18.916
+    ],
+    "small": false
+  },
+  "ZMB": {
+    "point": [
+      26.224,
+      -14.658
+    ],
+    "small": false
+  },
+  "YEM": {
+    "point": [
+      45.756,
+      15.36
+    ],
+    "small": false
+  },
+  "VNM": {
+    "point": [
+      105.473,
+      21.644
+    ],
+    "small": false
+  },
+  "VEN": {
+    "point": [
+      -64.42,
+      6.814
+    ],
+    "small": false
+  },
+  "VUT": {
+    "point": [
+      166.896,
+      -15.226
+    ],
+    "small": true
+  },
+  "UZB": {
+    "point": [
+      63.866,
+      41.735
+    ],
+    "small": false
+  },
+  "URY": {
+    "point": [
+      -56.012,
+      -32.921
+    ],
+    "small": false
+  },
+  "FSM": {
+    "point": [
+      158.236,
+      6.877
+    ],
+    "small": true
+  },
+  "MHL": {
+    "point": [
+      171.159,
+      7.101
+    ],
+    "small": true
+  },
+  "MNP": {
+    "point": [
+      145.734,
+      15.167
+    ],
+    "small": true
+  },
+  "VIR": {
+    "point": [
+      -64.8,
+      17.745
+    ],
+    "small": true
+  },
+  "GUM": {
+    "point": [
+      144.714,
+      13.416
+    ],
+    "small": true
+  },
+  "ASM": {
+    "point": [
+      -170.745,
+      -14.312
+    ],
+    "small": true
+  },
+  "PRI": {
+    "point": [
+      -66.62,
+      18.229
+    ],
+    "small": true
+  },
+  "USA": {
+    "point": [
+      -97.196,
+      38.514
+    ],
+    "small": false
+  },
+  "PCN": {
+    "point": [
+      -128.313,
+      -24.361
+    ],
+    "small": true
+  },
+  "AIA": {
+    "point": [
+      -63.045,
+      18.239
+    ],
+    "small": true
+  },
+  "FLK": {
+    "point": [
+      -58.637,
+      -51.684
+    ],
+    "small": true
+  },
+  "CYM": {
+    "point": [
+      -81.283,
+      19.324
+    ],
+    "small": true
+  },
+  "BMU": {
+    "point": [
+      -64.744,
+      32.31
+    ],
+    "small": true
+  },
+  "VGB": {
+    "point": [
+      -64.389,
+      18.498
+    ],
+    "small": true
+  },
+  "TCA": {
+    "point": [
+      -71.74,
+      21.809
+    ],
+    "small": true
+  },
+  "MSR": {
+    "point": [
+      -62.184,
+      16.715
+    ],
+    "small": true
+  },
+  "JEY": {
+    "point": [
+      -2.175,
+      49.219
+    ],
+    "small": true
+  },
+  "GGY": {
+    "point": [
+      -2.562,
+      49.457
+    ],
+    "small": true
+  },
+  "IMN": {
+    "point": [
+      -4.537,
+      54.237
+    ],
+    "small": true
+  },
+  "WLS": {
+    "point": [
+      -3.611,
+      52.205
+    ],
+    "small": false
+  },
+  "SCT": {
+    "point": [
+      -4.216,
+      56.673
+    ],
+    "small": false
+  },
+  "NIR": {
+    "point": [
+      -6.723,
+      54.627
+    ],
+    "small": false
+  },
+  "ENG": {
+    "point": [
+      -1.388,
+      52.654
+    ],
+    "small": false
+  },
+  "ARE": {
+    "point": [
+      54.368,
+      23.491
+    ],
+    "small": false
+  },
+  "UKR": {
+    "point": [
+      32.095,
+      49.349
+    ],
+    "small": false
+  },
+  "UGA": {
+    "point": [
+      32.68,
+      1.214
+    ],
+    "small": false
+  },
+  "TKM": {
+    "point": [
+      58.886,
+      39.788
+    ],
+    "small": false
+  },
+  "TUR": {
+    "point": [
+      34.777,
+      39.353
+    ],
+    "small": false
+  },
+  "TUN": {
+    "point": [
+      8.991,
+      33.783
+    ],
+    "small": false
+  },
+  "TTO": {
+    "point": [
+      -61.267,
+      10.349
+    ],
+    "small": true
+  },
+  "TON": {
+    "point": [
+      -175.228,
+      -21.168
+    ],
+    "small": true
+  },
+  "TGO": {
+    "point": [
+      1.018,
+      8.626
+    ],
+    "small": false
+  },
+  "TLS": {
+    "point": [
+      125.745,
+      -8.863
+    ],
+    "small": true
+  },
+  "THA": {
+    "point": [
+      101.08,
+      15.474
+    ],
+    "small": false
+  },
+  "TZA": {
+    "point": [
+      34.692,
+      -5.986
+    ],
+    "small": false
+  },
+  "TJK": {
+    "point": [
+      72.59,
+      38.224
+    ],
+    "small": false
+  },
+  "TWN": {
+    "point": [
+      120.962,
+      23.834
+    ],
+    "small": false
+  },
+  "SYR": {
+    "point": [
+      38.405,
+      35.166
+    ],
+    "small": false
+  },
+  "CHE": {
+    "point": [
+      8.193,
+      46.94
+    ],
+    "small": false
+  },
+  "SWE": {
+    "point": [
+      18.777,
+      65.829
+    ],
+    "small": false
+  },
+  "SWZ": {
+    "point": [
+      31.499,
+      -26.566
+    ],
+    "small": false
+  },
+  "SUR": {
+    "point": [
+      -55.951,
+      4.071
+    ],
+    "small": false
+  },
+  "SDS": {
+    "point": [
+      30.337,
+      7.208
+    ],
+    "small": false
+  },
+  "SDN": {
+    "point": [
+      29.793,
+      16.526
+    ],
+    "small": false
+  },
+  "LKA": {
+    "point": [
+      80.732,
+      7.599
+    ],
+    "small": false
+  },
+  "ESP": {
+    "point": [
+      -3.465,
+      40.078
+    ],
+    "small": false
+  },
+  "KOR": {
+    "point": [
+      128.007,
+      36.464
+    ],
+    "small": false
+  },
+  "ZAF": {
+    "point": [
+      23.244,
+      -30.019
+    ],
+    "small": false
+  },
+  "SOM": {
+    "point": [
+      44.066,
+      3.282
+    ],
+    "small": false
+  },
+  "SOL": {
+    "point": [
+      46.321,
+      9.498
+    ],
+    "small": false
+  },
+  "SLB": {
+    "point": [
+      159.425,
+      -8.191
+    ],
+    "small": true
+  },
+  "SVK": {
+    "point": [
+      19.006,
+      48.72
+    ],
+    "small": false
+  },
+  "SVN": {
+    "point": [
+      14.927,
+      46.01
+    ],
+    "small": false
+  },
+  "SGP": {
+    "point": [
+      103.815,
+      1.348
+    ],
+    "small": true
+  },
+  "SLE": {
+    "point": [
+      -11.733,
+      8.556
+    ],
+    "small": false
+  },
+  "SRB": {
+    "point": [
+      20.599,
+      44.142
+    ],
+    "small": false
+  },
+  "SEN": {
+    "point": [
+      -14.424,
+      14.633
+    ],
+    "small": false
+  },
+  "SAU": {
+    "point": [
+      45.248,
+      23.294
+    ],
+    "small": false
+  },
+  "STP": {
+    "point": [
+      6.65,
+      0.285
+    ],
+    "small": true
+  },
+  "SMR": {
+    "point": [
+      12.462,
+      43.943
+    ],
+    "small": true
+  },
+  "WSM": {
+    "point": [
+      -172.457,
+      -13.647
+    ],
+    "small": true
+  },
+  "VCT": {
+    "point": [
+      -61.191,
+      13.251
+    ],
+    "small": true
+  },
+  "LCA": {
+    "point": [
+      -60.947,
+      13.915
+    ],
+    "small": true
+  },
+  "KNA": {
+    "point": [
+      -62.742,
+      17.334
+    ],
+    "small": true
+  },
+  "RWA": {
+    "point": [
+      29.966,
+      -1.861
+    ],
+    "small": false
+  },
+  "RUS": {
+    "point": [
+      100.141,
+      64.085
+    ],
+    "small": false
+  },
+  "ROU": {
+    "point": [
+      24.915,
+      45.72
+    ],
+    "small": false
+  },
+  "QAT": {
+    "point": [
+      51.178,
+      25.297
+    ],
+    "small": true
+  },
+  "PRT": {
+    "point": [
+      -7.829,
+      40.439
+    ],
+    "small": false
+  },
+  "POL": {
+    "point": [
+      19.941,
+      51.831
+    ],
+    "small": false
+  },
+  "PHL": {
+    "point": [
+      121.398,
+      17.01
+    ],
+    "small": false
+  },
+  "PER": {
+    "point": [
+      -72.916,
+      -12.987
+    ],
+    "small": false
+  },
+  "PRY": {
+    "point": [
+      -60.155,
+      -21.681
+    ],
+    "small": false
+  },
+  "PNG": {
+    "point": [
+      143.322,
+      -5.821
+    ],
+    "small": false
+  },
+  "PAN": {
+    "point": [
+      -81.019,
+      8.279
+    ],
+    "small": false
+  },
+  "PLW": {
+    "point": [
+      134.579,
+      7.509
+    ],
+    "small": true
+  },
+  "PAK": {
+    "point": [
+      68.638,
+      29.426
+    ],
+    "small": false
+  },
+  "OMN": {
+    "point": [
+      57.399,
+      22.089
+    ],
+    "small": false
+  },
+  "NOR": {
+    "point": [
+      9.707,
+      61.417
+    ],
+    "small": false
+  },
+  "PRK": {
+    "point": [
+      126.451,
+      39.849
+    ],
+    "small": false
+  },
+  "NGA": {
+    "point": [
+      7.953,
+      9.587
+    ],
+    "small": false
+  },
+  "NER": {
+    "point": [
+      9.492,
+      17.443
+    ],
+    "small": false
+  },
+  "NIC": {
+    "point": [
+      -85.029,
+      12.578
+    ],
+    "small": false
+  },
+  "NZL": {
+    "point": [
+      169.293,
+      -45.146
+    ],
+    "small": false
+  },
+  "NIU": {
+    "point": [
+      -169.87,
+      -19.064
+    ],
+    "small": true
+  },
+  "COK": {
+    "point": [
+      -159.788,
+      -21.218
+    ],
+    "small": true
+  },
+  "NLD": {
+    "point": [
+      5.6,
+      52.183
+    ],
+    "small": false
+  },
+  "ABW": {
+    "point": [
+      -69.976,
+      12.508
+    ],
+    "small": true
+  },
+  "CUW": {
+    "point": [
+      -68.939,
+      12.156
+    ],
+    "small": true
+  },
+  "NPL": {
+    "point": [
+      82.564,
+      28.743
+    ],
+    "small": false
+  },
+  "NRU": {
+    "point": [
+      166.93,
+      -0.523
+    ],
+    "small": true
+  },
+  "NAM": {
+    "point": [
+      17.114,
+      -20.609
+    ],
+    "small": false
+  },
+  "MOZ": {
+    "point": [
+      37.815,
+      -13.933
+    ],
+    "small": false
+  },
+  "MAR": {
+    "point": [
+      -7.268,
+      31.663
+    ],
+    "small": false
+  },
+  "SAH": {
+    "point": [
+      -12.623,
+      23.943
+    ],
+    "small": false
+  },
+  "MNE": {
+    "point": [
+      19.103,
+      42.751
+    ],
+    "small": false
+  },
+  "MNG": {
+    "point": [
+      104.143,
+      46.028
+    ],
+    "small": false
+  },
+  "MDA": {
+    "point": [
+      28.519,
+      47.428
+    ],
+    "small": false
+  },
+  "MCO": {
+    "point": [
+      7.415,
+      43.754
+    ],
+    "small": true
+  },
+  "MEX": {
+    "point": [
+      -102.305,
+      23.943
+    ],
+    "small": false
+  },
+  "MRT": {
+    "point": [
+      -9.755,
+      19.343
+    ],
+    "small": false
+  },
+  "MLT": {
+    "point": [
+      14.451,
+      35.88
+    ],
+    "small": true
+  },
+  "MLI": {
+    "point": [
+      -2.157,
+      18.814
+    ],
+    "small": false
+  },
+  "MYS": {
+    "point": [
+      114.174,
+      2.928
+    ],
+    "small": false
+  },
+  "MWI": {
+    "point": [
+      33.984,
+      -11.35
+    ],
+    "small": false
+  },
+  "MDG": {
+    "point": [
+      46.7,
+      -18.318
+    ],
+    "small": false
+  },
+  "MKD": {
+    "point": [
+      21.67,
+      41.642
+    ],
+    "small": false
+  },
+  "LUX": {
+    "point": [
+      6.078,
+      49.686
+    ],
+    "small": true
+  },
+  "LTU": {
+    "point": [
+      24.087,
+      55.114
+    ],
+    "small": false
+  },
+  "LIE": {
+    "point": [
+      9.53,
+      47.114
+    ],
+    "small": true
+  },
+  "LBY": {
+    "point": [
+      18.011,
+      26.646
+    ],
+    "small": false
+  },
+  "LBR": {
+    "point": [
+      -9.443,
+      6.458
+    ],
+    "small": false
+  },
+  "LSO": {
+    "point": [
+      28.188,
+      -29.567
+    ],
+    "small": false
+  },
+  "LBN": {
+    "point": [
+      35.886,
+      33.89
+    ],
+    "small": true
+  },
+  "LVA": {
+    "point": [
+      25.251,
+      57.13
+    ],
+    "small": false
+  },
+  "LAO": {
+    "point": [
+      102.515,
+      19.658
+    ],
+    "small": false
+  },
+  "KGZ": {
+    "point": [
+      74.472,
+      41.676
+    ],
+    "small": false
+  },
+  "KWT": {
+    "point": [
+      47.414,
+      29.479
+    ],
+    "small": false
+  },
+  "KOS": {
+    "point": [
+      20.906,
+      42.517
+    ],
+    "small": true
+  },
+  "KIR": {
+    "point": [
+      -157.348,
+      1.8
+    ],
+    "small": true
+  },
+  "KEN": {
+    "point": [
+      37.791,
+      0.548
+    ],
+    "small": false
+  },
+  "KAZ": {
+    "point": [
+      68.995,
+      48.341
+    ],
+    "small": false
+  },
+  "JOR": {
+    "point": [
+      36.27,
+      30.786
+    ],
+    "small": false
+  },
+  "JPN": {
+    "point": [
+      138.453,
+      36.133
+    ],
+    "small": false
+  },
+  "JAM": {
+    "point": [
+      -77.392,
+      18.145
+    ],
+    "small": true
+  },
+  "ITA": {
+    "point": [
+      10.905,
+      45.092
+    ],
+    "small": false
+  },
+  "ISR": {
+    "point": [
+      34.818,
+      31.115
+    ],
+    "small": false
+  },
+  "PSE": {
+    "point": [
+      35.223,
+      31.93
+    ],
+    "small": true
+  },
+  "IRL": {
+    "point": [
+      -8.109,
+      53.136
+    ],
+    "small": false
+  },
+  "IRQ": {
+    "point": [
+      43.254,
+      33.106
+    ],
+    "small": false
+  },
+  "IRN": {
+    "point": [
+      54.902,
+      32.128
+    ],
+    "small": false
+  },
+  "IDN": {
+    "point": [
+      102.037,
+      -0.912
+    ],
+    "small": false
+  },
+  "IND": {
+    "point": [
+      78.591,
+      22.633
+    ],
+    "small": false
+  },
+  "ISL": {
+    "point": [
+      -18.702,
+      64.787
+    ],
+    "small": false
+  },
+  "HUN": {
+    "point": [
+      19.47,
+      47.035
+    ],
+    "small": false
+  },
+  "HND": {
+    "point": [
+      -86.928,
+      14.801
+    ],
+    "small": false
+  },
+  "HTI": {
+    "point": [
+      -72.208,
+      18.904
+    ],
+    "small": false
+  },
+  "GUY": {
+    "point": [
+      -58.83,
+      5.7
+    ],
+    "small": false
+  },
+  "GNB": {
+    "point": [
+      -14.954,
+      12.083
+    ],
+    "small": false
+  },
+  "GIN": {
+    "point": [
+      -9.76,
+      10.559
+    ],
+    "small": false
+  },
+  "GTM": {
+    "point": [
+      -90.482,
+      14.942
+    ],
+    "small": false
+  },
+  "GRD": {
+    "point": [
+      -61.666,
+      12.123
+    ],
+    "small": true
+  },
+  "GRC": {
+    "point": [
+      21.906,
+      39.204
+    ],
+    "small": false
+  },
+  "GHA": {
+    "point": [
+      -1.045,
+      7.428
+    ],
+    "small": false
+  },
+  "DEU": {
+    "point": [
+      9.824,
+      51.148
+    ],
+    "small": false
+  },
+  "GEO": {
+    "point": [
+      43.62,
+      41.964
+    ],
+    "small": false
+  },
+  "GMB": {
+    "point": [
+      -16.182,
+      13.355
+    ],
+    "small": true
+  },
+  "GAB": {
+    "point": [
+      11.783,
+      -0.697
+    ],
+    "small": false
+  },
+  "FRA": {
+    "point": [
+      2.447,
+      46.725
+    ],
+    "small": false
+  },
+  "SPM": {
+    "point": [
+      -56.33,
+      47.039
+    ],
+    "small": true
+  },
+  "WLF": {
+    "point": [
+      -178.128,
+      -14.288
+    ],
+    "small": true
+  },
+  "MAF": {
+    "point": [
+      -63.067,
+      18.091
+    ],
+    "small": true
+  },
+  "BLM": {
+    "point": [
+      -62.826,
+      17.895
+    ],
+    "small": true
+  },
+  "PYF": {
+    "point": [
+      -149.473,
+      -17.623
+    ],
+    "small": true
+  },
+  "NCL": {
+    "point": [
+      165.266,
+      -21.196
+    ],
+    "small": false
+  },
+  "ALD": {
+    "point": [
+      19.925,
+      60.245
+    ],
+    "small": true
+  },
+  "FIN": {
+    "point": [
+      27.272,
+      63.512
+    ],
+    "small": false
+  },
+  "FJI": {
+    "point": [
+      177.972,
+      -17.819
+    ],
+    "small": false
+  },
+  "ETH": {
+    "point": [
+      38.869,
+      8.025
+    ],
+    "small": false
+  },
+  "EST": {
+    "point": [
+      25.893,
+      58.692
+    ],
+    "small": false
+  },
+  "ERI": {
+    "point": [
+      38.242,
+      15.943
+    ],
+    "small": false
+  },
+  "GNQ": {
+    "point": [
+      10.51,
+      1.591
+    ],
+    "small": false
+  },
+  "SLV": {
+    "point": [
+      -88.875,
+      13.736
+    ],
+    "small": false
+  },
+  "EGY": {
+    "point": [
+      29.389,
+      26.488
+    ],
+    "small": false
+  },
+  "ECU": {
+    "point": [
+      -78.406,
+      -1.156
+    ],
+    "small": false
+  },
+  "DOM": {
+    "point": [
+      -70.594,
+      19.029
+    ],
+    "small": false
+  },
+  "DMA": {
+    "point": [
+      -61.365,
+      15.474
+    ],
+    "small": true
+  },
+  "DJI": {
+    "point": [
+      42.323,
+      11.501
+    ],
+    "small": false
+  },
+  "GRL": {
+    "point": [
+      -39.291,
+      74.364
+    ],
+    "small": false
+  },
+  "FRO": {
+    "point": [
+      -6.984,
+      62.187
+    ],
+    "small": true
+  },
+  "DNK": {
+    "point": [
+      9.128,
+      56.257
+    ],
+    "small": false
+  },
+  "CZE": {
+    "point": [
+      15.322,
+      49.836
+    ],
+    "small": false
+  },
+  "CYN": {
+    "point": [
+      33.067,
+      35.251
+    ],
+    "small": true
+  },
+  "CYP": {
+    "point": [
+      33.102,
+      34.895
+    ],
+    "small": true
+  },
+  "CUB": {
+    "point": [
+      -77.921,
+      21.379
+    ],
+    "small": false
+  },
+  "HRV": {
+    "point": [
+      16.091,
+      45.654
+    ],
+    "small": false
+  },
+  "CIV": {
+    "point": [
+      -5.608,
+      7.558
+    ],
+    "small": false
+  },
+  "CRI": {
+    "point": [
+      -84.066,
+      10.115
+    ],
+    "small": false
+  },
+  "COD": {
+    "point": [
+      23.484,
+      -1.874
+    ],
+    "small": false
+  },
+  "COG": {
+    "point": [
+      15.892,
+      0.013
+    ],
+    "small": false
+  },
+  "COM": {
+    "point": [
+      43.345,
+      -11.745
+    ],
+    "small": true
+  },
+  "COL": {
+    "point": [
+      -73.183,
+      3.599
+    ],
+    "small": false
+  },
+  "CHN": {
+    "point": [
+      106.332,
+      32.492
+    ],
+    "small": false
+  },
+  "MAC": {
+    "point": [
+      113.506,
+      22.23
+    ],
+    "small": true
+  },
+  "HKG": {
+    "point": [
+      114.192,
+      22.455
+    ],
+    "small": true
+  },
+  "CHL": {
+    "point": [
+      -72.416,
+      -38.007
+    ],
+    "small": false
+  },
+  "TCD": {
+    "point": [
+      18.754,
+      15.197
+    ],
+    "small": false
+  },
+  "CAF": {
+    "point": [
+      20.912,
+      6.971
+    ],
+    "small": false
+  },
+  "CPV": {
+    "point": [
+      -23.621,
+      15.065
+    ],
+    "small": true
+  },
+  "CAN": {
+    "point": [
+      -105.228,
+      58.745
+    ],
+    "small": false
+  },
+  "CMR": {
+    "point": [
+      12.46,
+      4.584
+    ],
+    "small": false
+  },
+  "KHM": {
+    "point": [
+      104.623,
+      12.747
+    ],
+    "small": false
+  },
+  "MMR": {
+    "point": [
+      95.804,
+      21.621
+    ],
+    "small": false
+  },
+  "BDI": {
+    "point": [
+      29.902,
+      -3.365
+    ],
+    "small": false
+  },
+  "BFA": {
+    "point": [
+      -1.392,
+      12.664
+    ],
+    "small": false
+  },
+  "BGR": {
+    "point": [
+      25.22,
+      42.472
+    ],
+    "small": false
+  },
+  "BRN": {
+    "point": [
+      114.561,
+      4.497
+    ],
+    "small": true
+  },
+  "BRA": {
+    "point": [
+      -49.568,
+      -11.996
+    ],
+    "small": false
+  },
+  "BWA": {
+    "point": [
+      23.884,
+      -22.151
+    ],
+    "small": false
+  },
+  "BIH": {
+    "point": [
+      17.825,
+      44.154
+    ],
+    "small": false
+  },
+  "BOL": {
+    "point": [
+      -64.695,
+      -16.671
+    ],
+    "small": false
+  },
+  "BTN": {
+    "point": [
+      90.449,
+      27.392
+    ],
+    "small": false
+  },
+  "BEN": {
+    "point": [
+      2.431,
+      10.316
+    ],
+    "small": false
+  },
+  "BLZ": {
+    "point": [
+      -88.736,
+      17.147
+    ],
+    "small": false
+  },
+  "BEL": {
+    "point": [
+      4.628,
+      50.621
+    ],
+    "small": false
+  },
+  "BLR": {
+    "point": [
+      28.433,
+      53.765
+    ],
+    "small": false
+  },
+  "BRB": {
+    "point": [
+      -59.531,
+      13.167
+    ],
+    "small": true
+  },
+  "BGD": {
+    "point": [
+      89.986,
+      23.993
+    ],
+    "small": false
+  },
+  "BHR": {
+    "point": [
+      50.534,
+      26.041
+    ],
+    "small": true
+  },
+  "BHS": {
+    "point": [
+      -77.146,
+      26.333
+    ],
+    "small": true
+  },
+  "AZE": {
+    "point": [
+      48.499,
+      40.383
+    ],
+    "small": false
+  },
+  "AUT": {
+    "point": [
+      14.103,
+      47.589
+    ],
+    "small": false
+  },
+  "AUS": {
+    "point": [
+      134.059,
+      -23.981
+    ],
+    "small": false
+  },
+  "IOA": {
+    "point": [
+      105.675,
+      -10.504
+    ],
+    "small": true
+  },
+  "NFK": {
+    "point": [
+      167.943,
+      -29.06
+    ],
+    "small": true
+  },
+  "ATC": {
+    "point": [
+      123.575,
+      -12.427
+    ],
+    "small": true
+  },
+  "ARM": {
+    "point": [
+      44.825,
+      40.481
+    ],
+    "small": false
+  },
+  "ARG": {
+    "point": [
+      -64.188,
+      -33.429
+    ],
+    "small": false
+  },
+  "ATG": {
+    "point": [
+      -61.8,
+      17.07
+    ],
+    "small": true
+  },
+  "AGO": {
+    "point": [
+      17.967,
+      -12.169
+    ],
+    "small": false
+  },
+  "AND": {
+    "point": [
+      1.526,
+      42.506
+    ],
+    "small": true
+  },
+  "DZA": {
+    "point": [
+      3.318,
+      27.581
+    ],
+    "small": false
+  },
+  "ALB": {
+    "point": [
+      20.104,
+      40.667
+    ],
+    "small": false
+  },
+  "AFG": {
+    "point": [
+      66.482,
+      34.15
+    ],
+    "small": false
+  },
+  "KAS": {
+    "point": [
+      77.155,
+      35.403
+    ],
+    "small": true
+  },
+  "SXM": {
+    "point": [
+      -63.036,
+      18.052
+    ],
+    "small": true
+  },
+  "TUV": {
+    "point": [
+      179.211,
+      -8.501
+    ],
+    "small": true
+  },
+  "GIB": {
+    "point": [
+      -5.35,
+      36.14
+    ],
+    "small": true
+  }
+}
