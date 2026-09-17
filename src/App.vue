@@ -6,10 +6,11 @@ import InternationalTrophies from './components/international-trophies.vue'
 import NationDrawer from './components/nation-drawer.vue'
 import NationSearch from './components/nation-search.vue'
 import StatsStrip from './components/stats-strip.vue'
+import TrophyTimeline from './components/trophy-timeline.vue'
 import WorldMap from './components/world-map.vue'
 import { useCareer } from './composables/use-career'
 
-type View = 'clubs' | 'international'
+type View = 'clubs' | 'international' | 'timeline'
 
 const { career, conqueredNations, winsForNation, renameCareer } = useCareer()
 
@@ -59,6 +60,9 @@ const tabClass = (tab: View) => [
       <button type="button" :class="tabClass('international')" @click="view = 'international'">
         International
       </button>
+      <button type="button" :class="tabClass('timeline')" @click="view = 'timeline'">
+        Timeline
+      </button>
     </nav>
 
     <template v-if="view === 'clubs'">
@@ -95,7 +99,9 @@ const tabClass = (tab: View) => [
       <ContinentalTrophies />
     </template>
 
-    <InternationalTrophies v-else />
+    <InternationalTrophies v-else-if="view === 'international'" />
+
+    <TrophyTimeline v-else />
 
     <footer class="label-caps mt-10 border-t border-line pt-4 text-center text-[10px] text-bone/40">
       Saved in this browser only — use Export regularly
