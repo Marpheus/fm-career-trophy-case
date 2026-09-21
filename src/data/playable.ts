@@ -1,5 +1,5 @@
 /**
- * The 61 nations with playable league systems loaded in this save. Everything else is
+ * The 60 nations with playable league systems loaded in this save. Everything else is
  * rendered inert grey on the map and cannot be conquered, so this set is also the
  * denominator for "nations conquered".
  */
@@ -62,7 +62,6 @@ export const PLAYABLE_NATIONS: ReadonlySet<string> = new Set([
   'JPN',
   'MYS',
   'SAU',
-  'SGP',
   'KOR',
   // CONCACAF
   'CAN',

@@ -64,7 +64,6 @@ const LEAGUES: readonly Omit<Competition, 'seasonFormat'>[] = [
   { id: 'JPN_L1', nation: 'JPN', name: 'J1 League' },
   { id: 'MYS_L1', nation: 'MYS', name: 'Malaysia Super League' },
   { id: 'SAU_L1', nation: 'SAU', name: 'Saudi Pro League' },
-  { id: 'SGP_L1', nation: 'SGP', name: 'Singapore Premier League' },
   { id: 'KOR_L1', nation: 'KOR', name: 'K League 1' },
   { id: 'CAN_L1', nation: 'CAN', name: 'Canadian Premier League' },
   { id: 'MEX_L1', nation: 'MEX', name: 'Liga MX' },
@@ -99,7 +98,6 @@ const CALENDAR_YEAR_NATIONS: ReadonlySet<string> = new Set([
   'CHN',
   'JPN',
   'KOR',
-  'SGP',
   'MYS',
   // North America
   'USA',
