@@ -4,7 +4,7 @@ import { COMPETITIONS, CONTINENTAL } from '../data/competitions'
 import { INTERNATIONAL } from '../data/international'
 import { PLAYABLE_NATIONS } from '../data/playable'
 
-const STORAGE_KEY = 'fm-trophy-case:v1'
+const STORAGE_KEY = 'fm-career-trophy-case:v1'
 
 const createId = () => crypto.randomUUID()
 

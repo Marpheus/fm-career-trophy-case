@@ -1,6 +1,7 @@
 {
-  "name": "fm-trophy-case",
+  "name": "fm-career-trophy-case",
   "private": true,
+  "description": "World map tracker for a Football Manager world-conquest save.",
   "version": "0.1.0",
   "type": "module",
   "scripts": {
