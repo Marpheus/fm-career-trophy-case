@@ -19,21 +19,21 @@
     "d3-zoom": "^3.0.0",
     "flag-icons": "^7.5.0",
     "topojson-client": "^3.1.0",
-    "vue": "^3.5.13"
+    "vue": "^3.5.43"
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.0.0",
     "@types/d3-geo": "^3.1.0",
-    "@types/d3-selection": "^3.0.11",
+    "@types/d3-selection": "^3.0.12",
     "@types/d3-zoom": "^3.0.8",
     "@types/topojson-client": "^3.1.5",
     "@types/topojson-specification": "^1.0.5",
-    "@vitejs/plugin-vue": "^5.2.1",
-    "mapshaper": "^0.6.102",
-    "prettier": "^3.4.2",
+    "@vitejs/plugin-vue": "^6.0.9",
+    "mapshaper": "^0.7.62",
+    "prettier": "^3.9.8",
     "tailwindcss": "^4.0.0",
-    "typescript": "~5.7.2",
-    "vite": "^6.0.7",
-    "vue-tsc": "^2.2.0"
+    "typescript": "~7.0.2",
+    "vite": "^8.3.0",
+    "vue-tsc": "^3.3.11"
   }
 }
