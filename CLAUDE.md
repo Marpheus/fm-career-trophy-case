@@ -24,7 +24,7 @@ render the map; `d3-zoom` handles pan and zoom. No UI framework, no router — i
 - Nations are grouped by **confederation** (UEFA, CAF, AFC, CONCACAF, OFC, CONMEBOL),
   not geographic continent — Türkiye and Israel are UEFA, Australia is AFC, Russia is
   UEFA despite most of its landmass being in Asia.
-- `src/data/playable.ts` is the 61 nations with loaded leagues. It drives both the grey
+- `src/data/playable.ts` is the 60 nations with loaded leagues. It drives both the grey
   "not playable" map fill and the denominator for every completion figure. Nations outside
   it cannot be selected.
 - Domestic football is leagues only - exactly one top division per playable nation, no
