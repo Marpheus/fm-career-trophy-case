@@ -1,4 +1,4 @@
-import { computed } from 'vue'
+import { computed, type Ref } from 'vue'
 import { COMPETITIONS, CONTINENTAL } from '../data/competitions'
 import { INTERNATIONAL } from '../data/international'
 import { NATION_BY_CODE } from '../data/nations'
@@ -6,6 +6,8 @@ import type { Confederation, Nation, Win } from '../types'
 import { useCareer } from './use-career'
 
 export type TrophyKind = 'league' | 'continental' | 'international'
+
+export type SortOrder = 'newest' | 'oldest'
 
 export interface TimelineEntry {
   readonly win: Win
@@ -74,11 +76,18 @@ const startYearOf = (season: string): number => {
   return Number.isNaN(year) ? 0 : year
 }
 
-const compareEntries = (a: TimelineEntry, b: TimelineEntry): number =>
-  KIND_ORDER[a.kind] - KIND_ORDER[b.kind] || a.competitionName.localeCompare(b.competitionName)
+/** A calendar season ('2032') finishes a year before a split one ('2032/33') that starts with it. */
+const endYearOf = (season: string): number => startYearOf(season) + (season.includes('/') ? 1 : 0)
 
-/** Every win grouped into the season it was won, oldest season first. */
-export const useTimeline = () => {
+const compareEntries =
+  (direction: number) =>
+  (a: TimelineEntry, b: TimelineEntry): number =>
+    direction * (endYearOf(a.win.season) - endYearOf(b.win.season)) ||
+    KIND_ORDER[a.kind] - KIND_ORDER[b.kind] ||
+    a.competitionName.localeCompare(b.competitionName)
+
+/** Every win grouped into the season it was won, in the given chronological order. */
+export const useTimeline = (order: Ref<SortOrder>) => {
   const { wins } = useCareer()
 
   const seasons = computed<TimelineSeason[]>(() => {
@@ -99,9 +108,13 @@ export const useTimeline = () => {
       else grouped.set(startYearOf(win.season), [entry])
     }
 
+    const direction = order.value === 'newest' ? -1 : 1
     return [...grouped.entries()]
-      .sort(([a], [b]) => a - b)
-      .map(([startYear, entries]) => ({ startYear, entries: entries.sort(compareEntries) }))
+      .sort(([a], [b]) => direction * (a - b))
+      .map(([startYear, entries]) => ({
+        startYear,
+        entries: entries.sort(compareEntries(direction)),
+      }))
   })
 
   return { seasons }

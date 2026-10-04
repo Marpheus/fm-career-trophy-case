@@ -1,17 +1,16 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { useTimeline, type TimelineEntry, type TrophyKind } from '../composables/use-timeline'
+import {
+  useTimeline,
+  type SortOrder,
+  type TimelineEntry,
+  type TrophyKind,
+} from '../composables/use-timeline'
 import NationFlag from './nation-flag.vue'
-
-type SortOrder = 'newest' | 'oldest'
-
-const { seasons } = useTimeline()
 
 const order = ref<SortOrder>('newest')
 
-const ordered = computed(() =>
-  order.value === 'newest' ? [...seasons.value].reverse() : seasons.value,
-)
+const { seasons } = useTimeline(order)
 
 const trophyCount = computed(() =>
   seasons.value.reduce((total, season) => total + season.entries.length, 0),
@@ -66,7 +65,7 @@ const tagFor = (entry: TimelineEntry): string =>
 
     <ol v-else>
       <li
-        v-for="season in ordered"
+        v-for="season in seasons"
         :key="season.startYear"
         class="relative border-l border-line pb-6 pl-6 last:border-l-transparent last:pb-0"
       >
