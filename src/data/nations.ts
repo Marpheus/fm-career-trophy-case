@@ -10,6 +10,14 @@ export const NATION_BY_CODE: ReadonlyMap<string, Nation> = new Map(
   NATIONS.map((nation) => [nation.code, nation]),
 )
 
+const NATION_BY_NAME: ReadonlyMap<string, Nation> = new Map(
+  NATIONS.map((nation) => [nation.name.toLowerCase(), nation]),
+)
+
+/** International wins store the national team as typed, so match it back by name. */
+export const findNationByName = (name: string): Nation | null =>
+  NATION_BY_NAME.get(name.trim().toLowerCase()) ?? null
+
 /** Confederations in the order they are shown, most nations first. */
 export const NATION_CONFEDERATIONS = ['UEFA', 'CAF', 'AFC', 'CONCACAF', 'OFC', 'CONMEBOL'] as const
 

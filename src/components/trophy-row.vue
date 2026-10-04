@@ -2,6 +2,7 @@
 import { nextTick, ref } from 'vue'
 import type { Win } from '../types'
 import { useEntryDefaults } from '../composables/use-entry-defaults'
+import { NATIONS } from '../data/nations'
 import { seasonLabel, type SeasonFormat } from '../data/seasons'
 import SeasonSelect from './season-select.vue'
 
@@ -29,12 +30,17 @@ const isAdding = ref(false)
 const startYear = ref(lastStartYear.value)
 const club = ref('')
 const clubInput = ref<HTMLInputElement | null>(null)
+const nationSelect = ref<HTMLSelectElement | null>(null)
+
+/** National teams are picked from the nation list so the timeline and map can find them. */
+const isNationEntry = props.teamLabel === 'Nation'
 
 const handleOpen = async () => {
   startYear.value = lastStartYear.value
   club.value = props.teamLabel === 'Club' ? lastClub.value : ''
   isAdding.value = true
   await nextTick()
+  nationSelect.value?.focus()
   clubInput.value?.focus()
   clubInput.value?.select()
 }
@@ -97,7 +103,21 @@ const handleSubmit = () => {
 
     <form v-if="isAdding" class="mt-2 flex items-center gap-1.5" @submit.prevent="handleSubmit">
       <SeasonSelect v-model="startYear" :format="seasonFormat" class="w-24 text-xs" />
+      <select
+        v-if="isNationEntry"
+        ref="nationSelect"
+        v-model="club"
+        :aria-label="teamLabel"
+        class="field min-w-0 flex-1 px-2 py-1 text-xs"
+        @keydown.esc="isAdding = false"
+      >
+        <option value="" disabled>{{ teamLabel }}…</option>
+        <option v-for="nation in NATIONS" :key="nation.code" :value="nation.name">
+          {{ nation.name }}
+        </option>
+      </select>
       <input
+        v-else
         ref="clubInput"
         v-model="club"
         :placeholder="teamLabel"

@@ -1,7 +1,7 @@
 import { computed, type Ref } from 'vue'
 import { COMPETITIONS, CONTINENTAL } from '../data/competitions'
 import { INTERNATIONAL } from '../data/international'
-import { NATION_BY_CODE } from '../data/nations'
+import { NATION_BY_CODE, findNationByName } from '../data/nations'
 import type { Confederation, Nation, Win } from '../types'
 import { useCareer } from './use-career'
 
@@ -14,7 +14,7 @@ export interface TimelineEntry {
   readonly competitionName: string
   readonly kind: TrophyKind
   readonly confederation: Confederation
-  /** Only leagues belong to a nation - that is where the flag comes from. */
+  /** The league's nation, or the national team that won an international trophy. */
   readonly nation: Nation | null
 }
 
@@ -101,7 +101,7 @@ export const useTimeline = (order: Ref<SortOrder>) => {
         competitionName: meta.name,
         kind: meta.kind,
         confederation: meta.confederation,
-        nation: meta.nation,
+        nation: meta.kind === 'international' ? findNationByName(win.club) : meta.nation,
       }
       const list = grouped.get(startYearOf(win.season))
       if (list) list.push(entry)
