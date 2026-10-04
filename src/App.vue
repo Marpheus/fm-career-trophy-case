@@ -12,7 +12,8 @@ import { useCareer } from './composables/use-career'
 
 type View = 'clubs' | 'international' | 'timeline'
 
-const { career, conqueredNations, winsForNation, renameCareer } = useCareer()
+const { career, conqueredNations, internationalWinsByNation, winsForNation, renameCareer } =
+  useCareer()
 
 const view = ref<View>('clubs')
 const selected = ref<string | null>(null)
@@ -70,6 +71,7 @@ const tabClass = (tab: View) => [
         <div>
           <WorldMap
             :conquered="conqueredNations"
+            :international-wins="internationalWinsByNation"
             :selected="selected"
             :trophy-count="trophyCount"
             @select="handleSelect"
@@ -86,6 +88,10 @@ const tabClass = (tab: View) => [
             <span class="flex items-center gap-1.5">
               <span class="inline-block size-3 bg-dormant" />
               Not playable
+            </span>
+            <span class="flex items-center gap-1.5">
+              <span class="text-sm leading-none text-orange">★</span>
+              International trophy
             </span>
             <span class="ml-auto text-bone/35">
               Scroll to zoom · drag to pan · dots are micro-nations

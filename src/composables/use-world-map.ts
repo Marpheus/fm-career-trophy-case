@@ -18,12 +18,19 @@ export interface MapDot {
   readonly y: number
 }
 
+export interface MapPoint {
+  readonly x: number
+  readonly y: number
+}
+
 interface NationProperties {
   code: string
 }
 
 const shapes = shallowRef<readonly MapShape[]>([])
 const dots = shallowRef<readonly MapDot[]>([])
+/** Projected point inside every nation, for markers drawn on top of the map. */
+const anchors = shallowRef<ReadonlyMap<string, MapPoint>>(new Map())
 const isLoading = shallowRef(true)
 const loadError = shallowRef<string | null>(null)
 let started = false
@@ -57,14 +64,17 @@ const build = (topology: Topology) => {
   }
 
   const nextDots: MapDot[] = []
+  const nextAnchors = new Map<string, MapPoint>()
   for (const [code, geo] of Object.entries(NATION_GEO)) {
-    if (!geo.small) continue
     const point = projection([geo.point[0], geo.point[1]])
-    if (point) nextDots.push({ code, x: point[0], y: point[1] })
+    if (!point) continue
+    nextAnchors.set(code, { x: point[0], y: point[1] })
+    if (geo.small) nextDots.push({ code, x: point[0], y: point[1] })
   }
 
   shapes.value = nextShapes
   dots.value = nextDots
+  anchors.value = nextAnchors
 }
 
 const loadMap = async () => {
@@ -83,5 +93,5 @@ const loadMap = async () => {
 
 export const useWorldMap = () => {
   void loadMap()
-  return { shapes, dots, isLoading, loadError }
+  return { shapes, dots, anchors, isLoading, loadError }
 }

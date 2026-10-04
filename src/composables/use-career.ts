@@ -2,6 +2,7 @@ import { computed, reactive, watch } from 'vue'
 import type { Career, Competition, PersistedState, Win } from '../types'
 import { COMPETITIONS, CONTINENTAL } from '../data/competitions'
 import { INTERNATIONAL } from '../data/international'
+import { findNationByName } from '../data/nations'
 import { PLAYABLE_NATIONS } from '../data/playable'
 
 const STORAGE_KEY = 'fm-career-trophy-case:v1'
@@ -54,6 +55,8 @@ watch(
 )
 
 const COMPETITION_BY_ID = new Map<string, Competition>(COMPETITIONS.map((c) => [c.id, c]))
+const INTERNATIONAL_IDS: ReadonlySet<string> = new Set(INTERNATIONAL.map((cup) => cup.id))
+
 const ABOVE_NATIONAL_BY_ID = new Map(
   [...CONTINENTAL, ...INTERNATIONAL].map((competition) => [competition.id, competition]),
 )
@@ -89,6 +92,17 @@ export const useCareer = () => {
       if (competition) codes.add(competition.nation)
     }
     return codes
+  })
+
+  /** International trophies per national team, keyed by nation code. */
+  const internationalWinsByNation = computed(() => {
+    const counts = new Map<string, number>()
+    for (const win of wins.value) {
+      if (!INTERNATIONAL_IDS.has(win.competitionId)) continue
+      const nation = findNationByName(win.club)
+      if (nation) counts.set(nation.code, (counts.get(nation.code) ?? 0) + 1)
+    }
+    return counts
   })
 
   const winsForNation = (nation: string) =>
@@ -145,6 +159,7 @@ export const useCareer = () => {
     wins,
     winsByCompetition,
     conqueredNations,
+    internationalWinsByNation,
     winsForNation,
     hasWon,
     addWin,

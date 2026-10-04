@@ -9,13 +9,15 @@ import NationFlag from './nation-flag.vue'
 
 const props = defineProps<{
   conquered: ReadonlySet<string>
+  /** International trophies per national team - these nations get a star. */
+  internationalWins: ReadonlyMap<string, number>
   selected: string | null
   trophyCount: (code: string) => number
 }>()
 
 const emit = defineEmits<{ select: [code: string] }>()
 
-const { shapes, dots, isLoading, loadError } = useWorldMap()
+const { shapes, dots, anchors, isLoading, loadError } = useWorldMap()
 
 const svgRef = ref<SVGSVGElement | null>(null)
 const scale = ref(1)
@@ -25,9 +27,45 @@ const pointer = ref({ x: 0, y: 0 })
 
 let behavior: ZoomBehavior<SVGSVGElement, unknown> | null = null
 
+/** Five-point star of radius 1 around the origin, scaled into place per nation. */
+const STAR_PATH = `${Array.from({ length: 10 }, (_, index) => {
+  const radius = index % 2 === 0 ? 1 : 0.45
+  const angle = (index * Math.PI) / 5 - Math.PI / 2
+  return `${index === 0 ? 'M' : 'L'}${(radius * Math.cos(angle)).toFixed(3)},${(radius * Math.sin(angle)).toFixed(3)}`
+}).join('')}Z`
+
+const STAR_RADIUS = 4.5
+
+const stars = computed(() =>
+  [...props.internationalWins.keys()].flatMap((code) => {
+    const point = anchors.value.get(code)
+    return point ? [{ code, ...point }] : []
+  }),
+)
+
+const labelFor = (code: string): string => {
+  const name = NATION_BY_CODE.get(code)?.name ?? code
+  const internationalCount = props.internationalWins.get(code) ?? 0
+  return internationalCount ? `${name}, ${internationalCount} international trophies` : name
+}
+
 const hoveredNation = computed(() => (hovered.value ? NATION_BY_CODE.get(hovered.value) : null))
 const isHoveredPlayable = computed(() => !!hovered.value && PLAYABLE_NATIONS.has(hovered.value))
 const hoveredTrophies = computed(() => (hovered.value ? props.trophyCount(hovered.value) : 0))
+const hoveredInternational = computed(() =>
+  hovered.value ? (props.internationalWins.get(hovered.value) ?? 0) : 0,
+)
+
+/** Room the tooltip needs on the right; closer to the edge it flips to the cursor's left. */
+const TOOLTIP_ROOM = 320
+
+const tooltipStyle = computed(() => {
+  const top = `${pointer.value.y + 16}px`
+  const hasRoomRight = pointer.value.x + TOOLTIP_ROOM < window.innerWidth
+  return hasRoomRight
+    ? { left: `${pointer.value.x + 16}px`, top }
+    : { right: `${window.innerWidth - pointer.value.x + 16}px`, top }
+})
 
 const classFor = (code: string) => {
   const isPlayable = PLAYABLE_NATIONS.has(code)
@@ -111,7 +149,7 @@ onBeforeUnmount(() => {
           vector-effect="non-scaling-stroke"
           :tabindex="PLAYABLE_NATIONS.has(shape.code) ? 0 : -1"
           :role="PLAYABLE_NATIONS.has(shape.code) ? 'button' : 'presentation'"
-          :aria-label="NATION_BY_CODE.get(shape.code)?.name ?? shape.code"
+          :aria-label="labelFor(shape.code)"
           @click="handleSelect(shape.code)"
           @keydown.enter="handleSelect(shape.code)"
           @mouseenter="handleEnter(shape.code, $event)"
@@ -126,10 +164,19 @@ onBeforeUnmount(() => {
           :stroke-width="1.1 / scale"
           :tabindex="PLAYABLE_NATIONS.has(dot.code) ? 0 : -1"
           :role="PLAYABLE_NATIONS.has(dot.code) ? 'button' : 'presentation'"
-          :aria-label="NATION_BY_CODE.get(dot.code)?.name ?? dot.code"
+          :aria-label="labelFor(dot.code)"
           @click="handleSelect(dot.code)"
           @keydown.enter="handleSelect(dot.code)"
           @mouseenter="handleEnter(dot.code, $event)"
+        />
+        <path
+          v-for="star in stars"
+          :key="`star-${star.code}`"
+          :d="STAR_PATH"
+          :transform="`translate(${star.x} ${star.y}) scale(${STAR_RADIUS / scale})`"
+          class="pointer-events-none fill-orange stroke-ocean"
+          :stroke-width="0.25"
+          aria-hidden="true"
         />
       </g>
     </svg>
@@ -155,13 +202,16 @@ onBeforeUnmount(() => {
 
     <div
       v-if="hoveredNation"
-      class="panel pointer-events-none border-l-4 border-l-amber fixed z-50 flex items-center gap-2 px-2.5 py-1.5 text-sm"
-      :style="{ left: `${pointer.x + 16}px`, top: `${pointer.y + 16}px` }"
+      class="panel pointer-events-none border-l-4 border-l-amber fixed z-50 flex items-center gap-2 whitespace-nowrap px-2.5 py-1.5 text-sm"
+      :style="tooltipStyle"
     >
       <NationFlag :flag="hoveredNation.flag" :name="hoveredNation.name" />
       <span class="label-caps">{{ hoveredNation.name }}</span>
       <span v-if="!isHoveredPlayable" class="label-caps text-xs text-bone/40">not playable</span>
       <span v-else-if="hoveredTrophies" class="led text-sm">×{{ hoveredTrophies }}</span>
+      <span v-if="hoveredInternational" class="label-caps text-xs text-orange">
+        ★ ×{{ hoveredInternational }}
+      </span>
     </div>
   </div>
 </template>
