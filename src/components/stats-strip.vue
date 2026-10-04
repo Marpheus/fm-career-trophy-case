@@ -37,6 +37,13 @@ const internationalWon = computed(
   () => INTERNATIONAL.filter((competition) => winsByCompetition.value.has(competition.id)).length,
 )
 
+const INTERNATIONAL_IDS: ReadonlySet<string> = new Set(INTERNATIONAL.map((cup) => cup.id))
+
+/** Club titles only - national team trophies have their own counter. */
+const clubTitles = computed(
+  () => wins.value.filter((win) => !INTERNATIONAL_IDS.has(win.competitionId)).length,
+)
+
 const worldCups = computed(() => winsByCompetition.value.get(WORLD_CUP_ID)?.length ?? 0)
 </script>
 
@@ -58,7 +65,7 @@ const worldCups = computed(() => winsByCompetition.value.get(WORLD_CUP_ID)?.leng
     <div class="panel flex items-center gap-4 border-l-4 border-l-cyan px-4 py-3">
       <div class="min-w-0 flex-1">
         <p class="label-caps text-xs text-bone/60">Titles won</p>
-        <p class="led-cyan mt-0.5 text-4xl leading-none">{{ wins.length }}</p>
+        <p class="led-cyan mt-0.5 text-4xl leading-none">{{ clubTitles }}</p>
       </div>
       <p class="label-caps shrink-0 self-end text-xs text-bone/45">{{ percent }}% of the world</p>
     </div>
