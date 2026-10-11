@@ -29,6 +29,8 @@ render the map; `d3-zoom` handles pan and zoom. No UI framework, no router — i
   it cannot be selected.
 - Domestic football is leagues only - exactly one top division per playable nation, no
   cups. A nation colours in on the map as soon as its league has a win.
+- A league that crowns several champions a season (Liga MX's Apertura and Clausura) stays
+  one competition and lists them in `stages`; each win then records its `stage`.
 - Leagues live in `src/data/competitions.ts`, club competitions above national level in the
   same file, national team ones in `src/data/international.ts`. Nation codes must match
   `src/data/nations.json`.

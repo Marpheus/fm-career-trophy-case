@@ -66,7 +66,7 @@ const LEAGUES: readonly Omit<Competition, 'seasonFormat'>[] = [
   { id: 'SAU_L1', nation: 'SAU', name: 'Saudi Pro League' },
   { id: 'KOR_L1', nation: 'KOR', name: 'K League 1' },
   { id: 'CAN_L1', nation: 'CAN', name: 'Canadian Premier League' },
-  { id: 'MEX_L1', nation: 'MEX', name: 'Liga MX' },
+  { id: 'MEX_L1', nation: 'MEX', name: 'Liga MX', stages: ['Apertura', 'Clausura'] },
   { id: 'USA_L1', nation: 'USA', name: 'MLS Cup' },
   { id: 'ZAF_L1', nation: 'ZAF', name: 'Premiership' },
 ]

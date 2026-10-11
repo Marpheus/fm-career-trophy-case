@@ -101,7 +101,8 @@ const tagFor = (entry: TimelineEntry): string =>
             />
             <div class="min-w-0 flex-1">
               <p class="label-caps truncate text-sm" :class="ACCENTS[entry.kind].text">
-                {{ entry.competitionName }}
+                {{ entry.competitionName
+                }}<span v-if="entry.win.stage" class="text-bone/50"> · {{ entry.win.stage }}</span>
               </p>
               <p class="truncate text-xs text-bone/60">{{ entry.win.club }}</p>
             </div>

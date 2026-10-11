@@ -15,11 +15,13 @@ const { winsByCompetition, addWin, removeWin } = useCareer()
 const { lastStartYear, lastClub, remember } = useEntryDefaults()
 
 const startYear = ref(lastStartYear.value)
+const stage = ref('')
 const club = ref('')
 const clubInput = ref<HTMLInputElement | null>(null)
 
 const nation = computed(() => NATION_BY_CODE.get(props.code) ?? null)
 const league = computed(() => LEAGUE_BY_NATION.get(props.code) ?? null)
+const stages = computed(() => league.value?.stages ?? [])
 const titles = computed(() =>
   league.value ? (winsByCompetition.value.get(league.value.id) ?? []) : [],
 )
@@ -28,6 +30,7 @@ watch(
   () => props.code,
   async () => {
     startYear.value = lastStartYear.value
+    stage.value = stages.value[0] ?? ''
     club.value = lastClub.value
     await nextTick()
     clubInput.value?.focus()
@@ -36,16 +39,28 @@ watch(
   { immediate: true },
 )
 
+/** Step to the next stage, rolling into the following season after the last one. */
+const advanceEntry = () => {
+  const nextStage = stages.value[stages.value.indexOf(stage.value) + 1]
+  if (nextStage) {
+    stage.value = nextStage
+    return
+  }
+  stage.value = stages.value[0] ?? ''
+  startYear.value += 1
+}
+
 const handleSubmit = () => {
   if (!league.value || !club.value.trim()) return
   addWin({
     competitionId: league.value.id,
     season: seasonLabel(startYear.value, league.value.seasonFormat),
     club: club.value,
+    stage: stage.value || undefined,
   })
   remember(startYear.value, club.value)
-  // Most saves add consecutive titles, so step to the next season ready for the next one.
-  startYear.value += 1
+  // Most saves add consecutive titles, so step to the next one ready to log.
+  advanceEntry()
   clubInput.value?.focus()
 }
 </script>
@@ -88,6 +103,14 @@ const handleSubmit = () => {
 
       <form class="mt-4 flex items-center gap-1.5" @submit.prevent="handleSubmit">
         <SeasonSelect v-model="startYear" :format="league.seasonFormat" class="w-28 text-sm" />
+        <select
+          v-if="stages.length"
+          v-model="stage"
+          aria-label="Stage"
+          class="field label-caps px-2 py-1.5 text-sm"
+        >
+          <option v-for="option in stages" :key="option" :value="option">{{ option }}</option>
+        </select>
         <input
           ref="clubInput"
           v-model="club"
@@ -105,11 +128,12 @@ const handleSubmit = () => {
           class="group flex items-center gap-2 border-l-4 border-l-amber bg-ground/45 px-2.5 py-1.5 text-sm"
         >
           <span class="font-display tabular-nums text-amber">{{ title.season }}</span>
+          <span v-if="title.stage" class="label-caps text-xs text-amber/70">{{ title.stage }}</span>
           <span class="truncate text-bone/70">{{ title.club }}</span>
           <button
             type="button"
             class="ml-auto text-bone/40 opacity-0 transition-opacity group-hover:opacity-100 focus:opacity-100 hover:text-orange"
-            :aria-label="`Remove ${title.season} title`"
+            :aria-label="`Remove ${title.season}${title.stage ? ` ${title.stage}` : ''} title`"
             @click="removeWin(title.id)"
           >
             ✕

@@ -20,6 +20,11 @@ export interface Competition {
   readonly nation: string
   readonly name: string
   readonly seasonFormat: SeasonFormat
+  /**
+   * Leagues that crown more than one champion a season (Liga MX's Apertura and Clausura),
+   * in the order they finish. Each win then records which one it was.
+   */
+  readonly stages?: readonly string[]
 }
 
 /** A club competition above national level. */
@@ -48,6 +53,8 @@ export interface Win {
   readonly season: string
   /** Club for domestic and continental trophies, national team for international ones. */
   readonly club: string
+  /** Which of the league's `stages` was won; absent for single-champion competitions. */
+  readonly stage?: string
   readonly addedAt: string
 }
 

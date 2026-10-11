@@ -16,6 +16,8 @@ export interface TimelineEntry {
   readonly confederation: Confederation
   /** The league's nation, or the national team that won an international trophy. */
   readonly nation: Nation | null
+  /** Where the win's stage falls in its season, so Apertura sorts before Clausura. */
+  readonly stageOrder: number
 }
 
 /** One career year. Calendar and split leagues that start together share a season. */
@@ -26,6 +28,7 @@ export interface TimelineSeason {
 
 interface CompetitionMeta {
   readonly name: string
+  readonly stages: readonly string[]
   readonly kind: TrophyKind
   readonly confederation: Confederation
   readonly nation: Nation | null
@@ -37,6 +40,7 @@ const buildMeta = (): ReadonlyMap<string, CompetitionMeta> => {
     const nation = NATION_BY_CODE.get(league.nation) ?? null
     meta.set(league.id, {
       name: league.name,
+      stages: league.stages ?? [],
       kind: 'league',
       confederation: nation?.confederation ?? 'FIFA',
       nation,
@@ -45,6 +49,7 @@ const buildMeta = (): ReadonlyMap<string, CompetitionMeta> => {
   for (const cup of CONTINENTAL) {
     meta.set(cup.id, {
       name: cup.name,
+      stages: [],
       kind: 'continental',
       confederation: cup.confederation,
       nation: null,
@@ -53,6 +58,7 @@ const buildMeta = (): ReadonlyMap<string, CompetitionMeta> => {
   for (const cup of INTERNATIONAL) {
     meta.set(cup.id, {
       name: cup.name,
+      stages: [],
       kind: 'international',
       confederation: cup.confederation,
       nation: null,
@@ -84,7 +90,8 @@ const compareEntries =
   (a: TimelineEntry, b: TimelineEntry): number =>
     direction * (endYearOf(a.win.season) - endYearOf(b.win.season)) ||
     KIND_ORDER[a.kind] - KIND_ORDER[b.kind] ||
-    a.competitionName.localeCompare(b.competitionName)
+    a.competitionName.localeCompare(b.competitionName) ||
+    direction * (a.stageOrder - b.stageOrder)
 
 /** Every win grouped into the season it was won, in the given chronological order. */
 export const useTimeline = (order: Ref<SortOrder>) => {
@@ -102,6 +109,7 @@ export const useTimeline = (order: Ref<SortOrder>) => {
         kind: meta.kind,
         confederation: meta.confederation,
         nation: meta.kind === 'international' ? findNationByName(win.club) : meta.nation,
+        stageOrder: win.stage ? meta.stages.indexOf(win.stage) : 0,
       }
       const list = grouped.get(startYearOf(win.season))
       if (list) list.push(entry)

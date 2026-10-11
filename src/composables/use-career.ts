@@ -110,7 +110,12 @@ export const useCareer = () => {
 
   const hasWon = (competitionId: string) => winsByCompetition.value.has(competitionId)
 
-  const addWin = (input: { competitionId: string; season: string; club: string }) => {
+  const addWin = (input: {
+    competitionId: string
+    season: string
+    club: string
+    stage?: string
+  }) => {
     const target = state.careers.find((c) => c.id === career.value.id)
     if (!target) return
     target.wins = [
@@ -120,6 +125,7 @@ export const useCareer = () => {
         competitionId: input.competitionId,
         season: input.season.trim(),
         club: input.club.trim(),
+        ...(input.stage ? { stage: input.stage } : {}),
         addedAt: new Date().toISOString(),
       },
     ]
