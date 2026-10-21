@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { ref } from 'vue'
 import AccountPanel from './components/account-panel.vue'
 import ContinentalTrophies from './components/continental-trophies.vue'
 import DataTransfer from './components/data-transfer.vue'
@@ -13,16 +13,10 @@ import { useCareer } from './composables/use-career'
 
 type View = 'clubs' | 'international' | 'timeline'
 
-const { career, conqueredNations, internationalWinsByNation, winsForNation, renameCareer } =
-  useCareer()
+const { conqueredNations, internationalWinsByNation, winsForNation } = useCareer()
 
 const view = ref<View>('clubs')
 const selected = ref<string | null>(null)
-
-const managerName = computed({
-  get: () => career.value.manager,
-  set: (value: string) => renameCareer(career.value.name, value),
-})
 
 const trophyCount = (code: string) => winsForNation(code).length
 
@@ -43,12 +37,6 @@ const tabClass = (tab: View) => [
     <header class="mb-5 flex flex-wrap items-center gap-3 border-b border-line pb-4">
       <span class="hazard h-9 w-2.5 shrink-0" aria-hidden="true" />
       <h1 class="font-display text-3xl tracking-wide">TROPHY CASE</h1>
-      <input
-        v-model="managerName"
-        placeholder="Manager"
-        aria-label="Manager name"
-        class="field label-caps w-36 px-2.5 py-1 text-xs"
-      />
       <div class="ml-auto flex items-center gap-2">
         <NationSearch v-if="view === 'clubs'" class="w-48" @select="handleSelect" />
         <DataTransfer />

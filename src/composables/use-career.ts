@@ -234,12 +234,6 @@ export const useCareer = () => {
     target.wins = target.wins.filter((win) => win.id !== winId)
   }
 
-  const renameCareer = (name: string, manager: string) => {
-    const target = state.careers.find((c) => c.id === career.value.id)
-    if (!target) return
-    Object.assign(target, { name, manager })
-  }
-
   const exportState = (): string => JSON.stringify(state, null, 2)
 
   const importState = (json: string): boolean => {
@@ -268,7 +262,6 @@ export const useCareer = () => {
     hasWon,
     addWin,
     removeWin,
-    renameCareer,
     exportState,
     importState,
     resetCareer,

@@ -61,6 +61,7 @@ export interface Win {
 export interface Career {
   readonly id: string
   name: string
+  /** No longer shown since accounts have a username; kept so older saves stay valid. */
   manager: string
   wins: Win[]
 }
