@@ -6,3 +6,7 @@ scripts/.cache
 public/flags
 .idea
 *.tsbuildinfo
+.env
+
+# Local Netlify folder
+.netlify

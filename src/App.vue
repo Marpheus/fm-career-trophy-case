@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
+import AccountPanel from './components/account-panel.vue'
 import ContinentalTrophies from './components/continental-trophies.vue'
 import DataTransfer from './components/data-transfer.vue'
 import InternationalTrophies from './components/international-trophies.vue'
@@ -51,6 +52,7 @@ const tabClass = (tab: View) => [
       <div class="ml-auto flex items-center gap-2">
         <NationSearch v-if="view === 'clubs'" class="w-48" @select="handleSelect" />
         <DataTransfer />
+        <AccountPanel />
       </div>
     </header>
 

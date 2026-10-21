@@ -1,18 +1,27 @@
 # CLAUDE.md — FM Trophy Case
 
-A static hobby site tracking a Football Manager world-conquest save. No backend, no database:
-all data lives in the browser's localStorage, deployed to Netlify as a static build.
+A hobby site tracking a Football Manager world-conquest save, deployed to Netlify. Signed out,
+a trophy case lives in the browser's localStorage. Anyone can register (username + password);
+signed in, it lives in a Neon Postgres database behind Netlify Functions.
 
 ## Stack
 
 Vite + Vue 3 (Composition API) + TypeScript + Tailwind v4. `d3-geo` and `topojson-client`
 render the map; `d3-zoom` handles pan and zoom. No UI framework, no router — it's one page.
+Server: Netlify Functions (TypeScript) with `@neondatabase/serverless`. No auth library —
+scrypt passwords, opaque session tokens in an HttpOnly cookie, rate limits in Postgres.
 
 ## Architecture
 
 - `src/data/` — nations, competitions, and generated map metadata.
 - `src/composables/` — `use-career` is the single source of truth for trophies and owns
-  localStorage; `use-world-map` loads and projects the geometry once.
+  persistence (localStorage signed out, `/api/state` signed in); `use-account` holds the
+  signed-in user; `use-world-map` loads and projects the geometry once.
+- `src/api.ts` — typed fetch wrappers for `/api/*`. `src/persisted-state.ts` is the shape
+  check shared by browser and server.
+- `netlify/functions/` — one file per endpoint, routed by `config.path` under `/api`.
+  `netlify/lib/` — db, sessions, passwords, rate limiting.
+- `db/schema.sql` — idempotent schema; `npm run db:migrate` applies it to `DATABASE_URL`.
 - `src/components/` — presentational, they read state through `useCareer()`.
 - `scripts/build-map.mjs` — regenerates map data from Natural Earth. Run it only when the
   nation list changes; its output is committed.
@@ -54,3 +63,11 @@ render the map; `d3-zoom` handles pan and zoom. No UI framework, no router — i
 ## Git
 
 Commit only when asked. One logical change per commit; the message says why.
+
+## Server rules
+
+- A save sends the whole `PersistedState` with the revision it was based on; the server
+  rejects stale revisions with 409 and the client adopts the stored copy.
+- Register, login and save go through `checkRateLimit`. Login errors never reveal
+  whether a username exists.
+- Secrets come from env vars only (`DATABASE_URL`); never commit `.env`.

@@ -11,9 +11,11 @@
     "typecheck": "vue-tsc -b",
     "format": "prettier --write .",
     "build:map": "node scripts/build-map.mjs",
-    "copy:flags": "node scripts/copy-flags.mjs"
+    "copy:flags": "node scripts/copy-flags.mjs",
+    "db:migrate": "node --env-file-if-exists=.env scripts/migrate.mjs"
   },
   "dependencies": {
+    "@neondatabase/serverless": "^1.2.0",
     "d3-geo": "^3.1.1",
     "d3-selection": "^3.0.0",
     "d3-zoom": "^3.0.0",
@@ -22,6 +24,7 @@
     "vue": "^3.5.13"
   },
   "devDependencies": {
+    "@netlify/functions": "^6.0.3",
     "@tailwindcss/vite": "^4.0.0",
     "@types/d3-geo": "^3.1.0",
     "@types/d3-selection": "^3.0.11",
