@@ -9,11 +9,13 @@ import NationSearch from './components/nation-search.vue'
 import StatsStrip from './components/stats-strip.vue'
 import TrophyTimeline from './components/trophy-timeline.vue'
 import WorldMap from './components/world-map.vue'
+import { useAccount } from './composables/use-account'
 import { useCareer } from './composables/use-career'
 
 type View = 'clubs' | 'international' | 'timeline'
 
 const { conqueredNations, internationalWinsByNation, winsForNation } = useCareer()
+const { username } = useAccount()
 
 const view = ref<View>('clubs')
 const selected = ref<string | null>(null)
@@ -100,7 +102,11 @@ const tabClass = (tab: View) => [
     <TrophyTimeline v-else />
 
     <footer class="label-caps mt-10 border-t border-line pt-4 text-center text-[10px] text-bone/40">
-      Saved in this browser only — use Export regularly
+      {{
+        username
+          ? 'Saved to your account'
+          : 'Saved in this browser only — sign in, or use Export regularly'
+      }}
     </footer>
   </div>
 </template>
