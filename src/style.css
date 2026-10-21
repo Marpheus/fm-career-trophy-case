@@ -25,6 +25,18 @@ html {
   color-scheme: dark;
 }
 
+/*
+ * iOS Safari zooms the page into any focused field under 16px and does not zoom back out.
+ * Unlayered, so it beats the text-xs / text-sm utilities on touch screens only.
+ */
+@media (pointer: coarse) {
+  input,
+  select,
+  textarea {
+    font-size: 16px;
+  }
+}
+
 body {
   /* Mown pitch stripes - wide and barely there, so it reads as grass not pattern. */
   background-color: var(--color-ground);

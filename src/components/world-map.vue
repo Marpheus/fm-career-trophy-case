@@ -202,7 +202,7 @@ onBeforeUnmount(() => {
 
     <div
       v-if="hoveredNation"
-      class="panel pointer-events-none border-l-4 border-l-amber fixed z-50 flex items-center gap-2 whitespace-nowrap px-2.5 py-1.5 text-sm"
+      class="panel pointer-events-none border-l-4 border-l-amber fixed z-50 flex pointer-coarse:hidden items-center gap-2 whitespace-nowrap px-2.5 py-1.5 text-sm"
       :style="tooltipStyle"
     >
       <NationFlag :flag="hoveredNation.flag" :name="hoveredNation.name" />

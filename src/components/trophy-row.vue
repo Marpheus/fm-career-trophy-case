@@ -78,7 +78,7 @@ const handleSubmit = () => {
       <span v-if="wins.length" class="led text-sm">×{{ wins.length }}</span>
       <button
         type="button"
-        class="btn size-6 shrink-0 text-sm leading-none"
+        class="btn size-6 shrink-0 text-sm leading-none pointer-coarse:size-8"
         :aria-label="`Add a win for ${name}`"
         @click="handleOpen"
       >
@@ -92,7 +92,7 @@ const handleSubmit = () => {
         <span class="truncate text-bone/65">{{ win.club }}</span>
         <button
           type="button"
-          class="ml-auto text-bone/40 opacity-0 transition-opacity group-hover:opacity-100 focus:opacity-100 hover:text-orange"
+          class="ml-auto text-bone/40 opacity-0 transition-opacity group-hover:opacity-100 focus:opacity-100 hover:text-orange pointer-coarse:px-2 pointer-coarse:opacity-100"
           :aria-label="`Remove ${win.season} ${name}`"
           @click="emit('remove', win.id)"
         >

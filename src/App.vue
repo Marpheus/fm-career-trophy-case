@@ -36,14 +36,17 @@ const tabClass = (tab: View) => [
 
 <template>
   <div class="mx-auto max-w-[1600px] px-4 py-6 lg:px-8">
+    <!-- Phones stack it: title and account, then search, then backups. -->
     <header class="mb-5 flex flex-wrap items-center gap-3 border-b border-line pb-4">
       <span class="hazard h-9 w-2.5 shrink-0" aria-hidden="true" />
-      <h1 class="font-display text-3xl tracking-wide">TROPHY CASE</h1>
-      <div class="ml-auto flex items-center gap-2">
-        <NationSearch v-if="view === 'clubs'" class="w-48" @select="handleSelect" />
-        <DataTransfer />
-        <AccountPanel />
-      </div>
+      <h1 class="font-display text-2xl tracking-wide sm:text-3xl">TROPHY CASE</h1>
+      <AccountPanel class="ml-auto min-w-0 sm:order-last sm:ml-0" />
+      <NationSearch
+        v-if="view === 'clubs'"
+        class="w-full sm:ml-auto sm:w-48"
+        @select="handleSelect"
+      />
+      <DataTransfer :class="view === 'clubs' ? '' : 'sm:ml-auto'" />
     </header>
 
     <StatsStrip class="mb-5" />
@@ -86,12 +89,20 @@ const tabClass = (tab: View) => [
               International trophy
             </span>
             <span class="ml-auto text-bone/35">
-              Scroll to zoom · drag to pan · dots are micro-nations
+              <span class="pointer-coarse:hidden">Scroll to zoom</span>
+              <span class="hidden pointer-coarse:inline">Pinch to zoom</span>
+              · drag to pan · dots are micro-nations
             </span>
           </div>
         </div>
 
-        <NationDrawer v-if="selected" :code="selected" @close="selected = null" />
+        <!-- Below lg it is a bottom sheet, so the map stays in view while logging titles. -->
+        <NationDrawer
+          v-if="selected"
+          :code="selected"
+          class="max-lg:fixed max-lg:inset-x-0 max-lg:bottom-0 max-lg:z-40 max-lg:h-auto max-lg:max-h-[70dvh] max-lg:shadow-[0_-12px_32px_rgb(0_0_0/0.5)]"
+          @close="selected = null"
+        />
       </div>
 
       <ContinentalTrophies />

@@ -55,9 +55,9 @@ const handleLogout = async () => {
 </script>
 
 <template>
-  <div class="flex items-center gap-2">
+  <div class="flex min-w-0 items-center gap-2">
     <template v-if="username">
-      <span class="label-caps text-xs text-bone/60" aria-live="polite">
+      <span class="label-caps min-w-0 truncate text-xs text-bone/60" aria-live="polite">
         <span class="text-amber">{{ username }}</span> · {{ statusLabel }}
       </span>
       <button type="button" class="btn px-3 py-1.5 text-xs" @click="handleLogout">Sign out</button>

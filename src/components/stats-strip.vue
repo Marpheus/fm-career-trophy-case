@@ -44,49 +44,54 @@ const clubTitles = computed(
   () => wins.value.filter((win) => !INTERNATIONAL_IDS.has(win.competitionId)).length,
 )
 
+const CARD = [
+  'panel flex flex-col items-start gap-1.5 border-l-4 px-2.5 py-2',
+  'sm:flex-row sm:items-center sm:gap-4 sm:px-4 sm:py-3',
+]
+const CARD_LABEL = 'label-caps text-[10px] leading-tight text-bone/60 sm:text-xs'
+const CARD_NOTE = 'label-caps shrink-0 text-[10px] leading-tight sm:self-end sm:text-xs'
+
 const worldCups = computed(() => winsByCompetition.value.get(WORLD_CUP_ID)?.length ?? 0)
 </script>
 
 <template>
-  <section class="grid gap-3 lg:grid-cols-[1fr_1fr_1fr_1.5fr]">
-    <div class="panel flex items-center gap-4 border-l-4 border-l-amber px-4 py-3">
-      <span class="hazard h-12 w-2 shrink-0 opacity-70" aria-hidden="true" />
+  <!-- Phones fit the three counters side by side, each stacked, with the table below. -->
+  <section class="grid grid-cols-3 gap-2 sm:gap-3 lg:grid-cols-[1fr_1fr_1fr_1.5fr]">
+    <div :class="CARD" class="border-l-amber">
+      <span class="hazard hidden h-12 w-2 shrink-0 opacity-70 sm:block" aria-hidden="true" />
       <div class="min-w-0 flex-1">
-        <p class="label-caps text-xs text-bone/60">Nations conquered</p>
-        <p class="led mt-0.5 text-4xl leading-none">
+        <p :class="CARD_LABEL">Nations conquered</p>
+        <p class="led mt-0.5 text-3xl leading-none sm:text-4xl">
           {{ conqueredCount }}<span class="text-xl text-bone/35">/{{ leagueNations.size }}</span>
         </p>
       </div>
-      <div class="h-1.5 w-24 shrink-0 self-end bg-ground">
+      <div class="h-1.5 w-full shrink-0 bg-ground sm:w-24 sm:self-end">
         <div class="h-full bg-amber transition-all" :style="{ width: `${percent}%` }" />
       </div>
     </div>
 
-    <div class="panel flex items-center gap-4 border-l-4 border-l-cyan px-4 py-3">
+    <div :class="CARD" class="border-l-cyan">
       <div class="min-w-0 flex-1">
-        <p class="label-caps text-xs text-bone/60">Titles won</p>
-        <p class="led-cyan mt-0.5 text-4xl leading-none">{{ clubTitles }}</p>
+        <p :class="CARD_LABEL">Titles won</p>
+        <p class="led-cyan mt-0.5 text-3xl leading-none sm:text-4xl">{{ clubTitles }}</p>
       </div>
-      <p class="label-caps shrink-0 self-end text-xs text-bone/45">{{ percent }}% of the world</p>
+      <p :class="CARD_NOTE" class="text-bone/45">{{ percent }}% of the world</p>
     </div>
 
-    <div class="panel flex items-center gap-4 border-l-4 border-l-orange px-4 py-3">
+    <div :class="CARD" class="border-l-orange">
       <div class="min-w-0 flex-1">
-        <p class="label-caps text-xs text-bone/60">International</p>
-        <p class="led-orange mt-0.5 text-4xl leading-none">
+        <p :class="CARD_LABEL">International</p>
+        <p class="led-orange mt-0.5 text-3xl leading-none sm:text-4xl">
           {{ internationalWon
           }}<span class="text-xl text-bone/35">/{{ INTERNATIONAL.length }}</span>
         </p>
       </div>
-      <p
-        class="label-caps shrink-0 self-end text-xs"
-        :class="worldCups ? 'text-amber' : 'text-bone/45'"
-      >
+      <p :class="[CARD_NOTE, worldCups ? 'text-amber' : 'text-bone/45']">
         {{ worldCups ? `${worldCups}× World Cup` : 'No World Cup' }}
       </p>
     </div>
 
-    <div class="panel px-4 py-3">
+    <div class="panel col-span-3 px-4 py-3 lg:col-span-1">
       <p class="label-caps mb-2 text-xs text-bone/60">By confederation</p>
       <ul class="grid gap-x-5 gap-y-1 sm:grid-cols-2">
         <li
