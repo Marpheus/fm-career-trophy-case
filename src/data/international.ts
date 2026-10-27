@@ -12,13 +12,7 @@ export const INTERNATIONAL: readonly InternationalCompetition[] = [
     rank: 1,
     seasonFormat: 'calendar',
   },
-  {
-    id: 'INT_FINALISSIMA',
-    name: 'Finalissima',
-    confederation: 'FIFA',
-    rank: 2,
-    seasonFormat: 'calendar',
-  },
+  // No Finalissima: deliberately not tracked.
 
   {
     id: 'INT_EURO',

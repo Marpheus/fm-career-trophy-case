@@ -10,10 +10,6 @@ const winsFor = (competitionId: string) => winsByCompetition.value.get(competiti
 
 const worldCup = INTERNATIONAL.find((competition) => competition.id === WORLD_CUP_ID)!
 
-const intercontinental = INTERNATIONAL.filter(
-  (competition) => competition.confederation === 'FIFA' && competition.id !== WORLD_CUP_ID,
-)
-
 const groups = computed(() =>
   INTERNATIONAL_CONFEDERATIONS.map((confederation) => ({
     confederation,
@@ -31,26 +27,13 @@ const groups = computed(() =>
         <span class="hazard h-3 w-8 opacity-70" aria-hidden="true" />
         <h2 class="label-caps text-sm text-bone/70">The big one</h2>
       </header>
-      <ul class="grid gap-2 sm:grid-cols-2">
+      <ul>
         <TrophyRow
           :competition-id="worldCup.id"
           :name="worldCup.name"
           label="Every four years"
           :wins="winsFor(worldCup.id)"
           :season-format="worldCup.seasonFormat"
-          team-label="Nation"
-          tone="hero"
-          @add="addWin"
-          @remove="removeWin"
-        />
-        <TrophyRow
-          v-for="competition in intercontinental"
-          :key="competition.id"
-          :competition-id="competition.id"
-          :name="competition.name"
-          label="Intercontinental"
-          :wins="winsFor(competition.id)"
-          :season-format="competition.seasonFormat"
           team-label="Nation"
           tone="hero"
           @add="addWin"
