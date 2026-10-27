@@ -21,13 +21,7 @@ export const INTERNATIONAL: readonly InternationalCompetition[] = [
     rank: 1,
     seasonFormat: 'calendar',
   },
-  {
-    id: 'INT_UNL',
-    name: 'UEFA Nations League',
-    confederation: 'UEFA',
-    rank: 2,
-    seasonFormat: 'calendar',
-  },
+  // No UEFA Nations League: deliberately not tracked.
 
   {
     id: 'INT_COPA',
