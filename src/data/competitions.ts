@@ -194,18 +194,11 @@ export const CONTINENTAL: readonly ContinentalCompetition[] = [
     seasonFormat: 'split',
   },
   { id: 'CAF_SC', name: 'CAF Super Cup', confederation: 'CAF', rank: 3, seasonFormat: 'split' },
-
-  {
-    id: 'FIFA_CWC',
-    name: 'FIFA Club World Cup',
-    confederation: 'FIFA',
-    rank: 1,
-    seasonFormat: 'calendar',
-  },
+  // No FIFA Club World Cup: it is broken in the save this tracks, so it cannot be won.
 ]
 
 /** Confederation order used for the club sections. */
-export const CLUB_CONFEDERATIONS = ['UEFA', 'CONMEBOL', 'AFC', 'CONCACAF', 'CAF', 'FIFA'] as const
+export const CLUB_CONFEDERATIONS = ['UEFA', 'CONMEBOL', 'AFC', 'CONCACAF', 'CAF'] as const
 
 /** One league per nation, so a nation's league is a direct lookup. */
 export const LEAGUE_BY_NATION: ReadonlyMap<string, Competition> = new Map(

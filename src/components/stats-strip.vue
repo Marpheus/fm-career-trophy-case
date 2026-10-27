@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
+import { COMPETITIONS, CONTINENTAL } from '../data/competitions'
 import { INTERNATIONAL, WORLD_CUP_ID } from '../data/international'
 import { NATION_BY_CODE, NATION_CONFEDERATIONS } from '../data/nations'
 import { PLAYABLE_NATIONS } from '../data/playable'
@@ -37,11 +38,16 @@ const internationalWon = computed(
   () => INTERNATIONAL.filter((competition) => winsByCompetition.value.has(competition.id)).length,
 )
 
-const INTERNATIONAL_IDS: ReadonlySet<string> = new Set(INTERNATIONAL.map((cup) => cup.id))
+const CLUB_COMPETITION_IDS: ReadonlySet<string> = new Set(
+  [...COMPETITIONS, ...CONTINENTAL].map((competition) => competition.id),
+)
 
-/** Club titles only - national team trophies have their own counter. */
+/**
+ * Club titles only - national team trophies have their own counter. Wins of competitions
+ * since dropped from the data (the Club World Cup) no longer count.
+ */
 const clubTitles = computed(
-  () => wins.value.filter((win) => !INTERNATIONAL_IDS.has(win.competitionId)).length,
+  () => wins.value.filter((win) => CLUB_COMPETITION_IDS.has(win.competitionId)).length,
 )
 
 const CARD = [
