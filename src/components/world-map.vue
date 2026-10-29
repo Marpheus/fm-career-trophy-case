@@ -13,6 +13,8 @@ const props = defineProps<{
   internationalWins: ReadonlyMap<string, number>
   selected: string | null
   trophyCount: (code: string) => number
+  /** Nations of club jobs in order; drawn as arcs between numbered stops when not empty. */
+  careerPath?: readonly string[]
 }>()
 
 const emit = defineEmits<{ select: [code: string] }>()
@@ -42,6 +44,40 @@ const stars = computed(() =>
     return point ? [{ code, ...point }] : []
   }),
 )
+
+const pathStops = computed(() =>
+  (props.careerPath ?? []).flatMap((code) => {
+    const point = anchors.value.get(code)
+    return point ? [{ code, ...point }] : []
+  }),
+)
+
+/** Bend each leg slightly to one side so out-and-back moves do not draw over each other. */
+const ARC_BEND = 0.2
+
+const pathArcs = computed(() =>
+  pathStops.value.slice(1).map((to, index) => {
+    const from = pathStops.value[index]
+    const midX = (from.x + to.x) / 2 - (to.y - from.y) * ARC_BEND
+    const midY = (from.y + to.y) / 2 + (to.x - from.x) * ARC_BEND
+    return `M${from.x},${from.y} Q${midX},${midY} ${to.x},${to.y}`
+  }),
+)
+
+/** One marker per nation; returning to a country adds its number to the same marker. */
+const stopMarkers = computed(() => {
+  const markers = new Map<string, { x: number; y: number; numbers: number[] }>()
+  pathStops.value.forEach((stop, index) => {
+    const marker = markers.get(stop.code)
+    if (marker) marker.numbers.push(index + 1)
+    else markers.set(stop.code, { x: stop.x, y: stop.y, numbers: [index + 1] })
+  })
+  return [...markers.entries()].map(([code, marker]) => ({
+    code,
+    ...marker,
+    label: marker.numbers.join('·'),
+  }))
+})
 
 const labelFor = (code: string): string => {
   const name = NATION_BY_CODE.get(code)?.name ?? code
@@ -178,6 +214,37 @@ onBeforeUnmount(() => {
           :stroke-width="0.25"
           aria-hidden="true"
         />
+        <g v-if="pathStops.length" class="pointer-events-none" aria-hidden="true">
+          <path
+            v-for="(d, index) in pathArcs"
+            :key="`arc-${index}`"
+            :d="d"
+            fill="none"
+            class="stroke-cyan"
+            stroke-width="2"
+            stroke-dasharray="6 4"
+            stroke-linecap="round"
+            vector-effect="non-scaling-stroke"
+          />
+          <g
+            v-for="marker in stopMarkers"
+            :key="`stop-${marker.code}`"
+            :transform="`translate(${marker.x} ${marker.y}) scale(${1 / scale})`"
+          >
+            <rect
+              :x="-(4 + marker.label.length * 3)"
+              y="-7"
+              :width="8 + marker.label.length * 6"
+              height="14"
+              rx="7"
+              class="fill-ground stroke-cyan"
+              stroke-width="1.5"
+            />
+            <text text-anchor="middle" dy="3.5" font-size="10" class="fill-cyan font-display">
+              {{ marker.label }}
+            </text>
+          </g>
+        </g>
       </g>
     </svg>
 

@@ -43,6 +43,9 @@ scrypt passwords, opaque session tokens in an HttpOnly cookie, rate limits in Po
 - Leagues live in `src/data/competitions.ts`, club competitions above national level in the
   same file, national team ones in `src/data/international.ts`. Nation codes must match
   `src/data/nations.json`.
+- The map's career path is derived from wins, never entered: a club's country is that of
+  the league it won, and the path follows club countries in title order, one stop per change
+  of country. Jobs without a trophy and national teams deliberately do not appear.
 - OFC appears only in the international view: no Oceanian league is playable, so the OFC
   Champions League cannot be won with a club.
 

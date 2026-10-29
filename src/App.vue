@@ -11,6 +11,7 @@ import StatsStrip from './components/stats-strip.vue'
 import TrophyTimeline from './components/trophy-timeline.vue'
 import WorldMap from './components/world-map.vue'
 import { useCareer } from './composables/use-career'
+import { useCareerPath } from './composables/use-career-path'
 
 type View = 'clubs' | 'international' | 'timeline'
 
@@ -23,8 +24,11 @@ const {
   profileStatus,
 } = useCareer()
 
+const { path: careerPath } = useCareerPath()
+
 const view = ref<View>('clubs')
 const selected = ref<string | null>(null)
+const isPathShown = ref(false)
 
 const PROFILE_MESSAGES = {
   loading: 'Loading…',
@@ -93,6 +97,7 @@ const tabClass = (tab: View) => [
               :international-wins="internationalWinsByNation"
               :selected="selected"
               :trophy-count="trophyCount"
+              :career-path="isPathShown ? careerPath : []"
               @select="handleSelect"
             />
             <div
@@ -114,6 +119,20 @@ const tabClass = (tab: View) => [
                 <span class="text-sm leading-none text-orange">★</span>
                 International trophy
               </span>
+              <button
+                v-if="careerPath.length"
+                type="button"
+                class="label-caps ml-auto flex items-center gap-1.5 transition-colors"
+                :class="isPathShown ? 'text-cyan' : 'hover:text-bone'"
+                :aria-pressed="isPathShown"
+                @click="isPathShown = !isPathShown"
+              >
+                <span
+                  class="inline-block h-0 w-4 border-t-2 border-dashed"
+                  :class="isPathShown ? 'border-cyan' : 'border-bone/55'"
+                />
+                Career path
+              </button>
             </div>
           </div>
 

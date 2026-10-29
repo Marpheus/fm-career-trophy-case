@@ -16,6 +16,7 @@ leagues stays dark.
 - **Clubs** — an interactive world map (pan, zoom, search) plus the continental club cups.
 - **International** — the World Cup and every confederation's national team trophies.
 - **Timeline** — the whole career season by season.
+- **Career path** — your club moves drawn on the map, read straight off your trophies.
 - **Home nations kept apart** — England, Scotland, Wales and Northern Ireland are separate
   nations, as they are in FM.
 - **Grouped by confederation, not continent** — Türkiye and Israel sit in UEFA, Australia in

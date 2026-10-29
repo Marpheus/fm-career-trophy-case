@@ -21,3 +21,13 @@ export const seasonOptions = (format: SeasonFormat = 'split') =>
     const startYear = FIRST_SEASON_YEAR + index
     return { startYear, label: seasonLabel(startYear, format) }
   })
+
+/** '2027/28' and '2027' both start in 2027. Imported junk sorts to the very beginning. */
+export const startYearOf = (season: string): number => {
+  const year = Number.parseInt(season, 10)
+  return Number.isNaN(year) ? 0 : year
+}
+
+/** A calendar season ('2032') finishes a year before a split one ('2032/33') that starts with it. */
+export const endYearOf = (season: string): number =>
+  startYearOf(season) + (season.includes('/') ? 1 : 0)

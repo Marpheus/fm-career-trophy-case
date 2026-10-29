@@ -2,6 +2,7 @@ import { computed, type Ref } from 'vue'
 import { COMPETITIONS, CONTINENTAL } from '../data/competitions'
 import { INTERNATIONAL } from '../data/international'
 import { NATION_BY_CODE, findNationByName } from '../data/nations'
+import { endYearOf, startYearOf } from '../data/seasons'
 import type { Confederation, Nation, Win } from '../types'
 import { useCareer } from './use-career'
 
@@ -75,15 +76,6 @@ const KIND_ORDER: Readonly<Record<TrophyKind, number>> = {
   continental: 1,
   league: 2,
 }
-
-/** '2027/28' and '2027' both start in 2027. Imported junk sorts to the very beginning. */
-const startYearOf = (season: string): number => {
-  const year = Number.parseInt(season, 10)
-  return Number.isNaN(year) ? 0 : year
-}
-
-/** A calendar season ('2032') finishes a year before a split one ('2032/33') that starts with it. */
-const endYearOf = (season: string): number => startYearOf(season) + (season.includes('/') ? 1 : 0)
 
 const compareEntries =
   (direction: number) =>
