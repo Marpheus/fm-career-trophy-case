@@ -82,9 +82,6 @@ const handleLogout = async () => {
         <h2 id="account-title" class="font-display text-xl tracking-wide">
           {{ isRegistering ? 'CREATE ACCOUNT' : 'SIGN IN' }}
         </h2>
-        <p class="text-xs text-bone/60">
-          Your trophy case is saved to your account and follows you to any device.
-        </p>
         <label class="flex flex-col gap-1">
           <span class="label-caps text-xs">Username</span>
           <input
@@ -125,7 +122,7 @@ const handleLogout = async () => {
           class="self-start text-xs text-bone/60 underline hover:text-bone"
           @click="handleToggleMode"
         >
-          {{ isRegistering ? 'Have an account? Sign in' : 'New here? Create an account' }}
+          {{ isRegistering ? 'Sign in instead' : 'Create an account' }}
         </button>
       </form>
     </dialog>

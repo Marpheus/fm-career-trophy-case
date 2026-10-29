@@ -9,13 +9,11 @@ import NationSearch from './components/nation-search.vue'
 import StatsStrip from './components/stats-strip.vue'
 import TrophyTimeline from './components/trophy-timeline.vue'
 import WorldMap from './components/world-map.vue'
-import { useAccount } from './composables/use-account'
 import { useCareer } from './composables/use-career'
 
 type View = 'clubs' | 'international' | 'timeline'
 
 const { conqueredNations, internationalWinsByNation, winsForNation } = useCareer()
-const { username } = useAccount()
 
 const view = ref<View>('clubs')
 const selected = ref<string | null>(null)
@@ -88,11 +86,6 @@ const tabClass = (tab: View) => [
               <span class="text-sm leading-none text-orange">★</span>
               International trophy
             </span>
-            <span class="ml-auto text-bone/35">
-              <span class="pointer-coarse:hidden">Scroll to zoom</span>
-              <span class="hidden pointer-coarse:inline">Pinch to zoom</span>
-              · drag to pan · dots are micro-nations
-            </span>
           </div>
         </div>
 
@@ -111,13 +104,5 @@ const tabClass = (tab: View) => [
     <InternationalTrophies v-else-if="view === 'international'" />
 
     <TrophyTimeline v-else />
-
-    <footer class="label-caps mt-10 border-t border-line pt-4 text-center text-[10px] text-bone/40">
-      {{
-        username
-          ? 'Saved to your account'
-          : 'Saved in this browser only — sign in, or use Export regularly'
-      }}
-    </footer>
   </div>
 </template>

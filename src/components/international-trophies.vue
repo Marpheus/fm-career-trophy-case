@@ -31,7 +31,6 @@ const groups = computed(() =>
         <TrophyRow
           :competition-id="worldCup.id"
           :name="worldCup.name"
-          label="Every four years"
           :wins="winsFor(worldCup.id)"
           :season-format="worldCup.seasonFormat"
           team-label="Nation"

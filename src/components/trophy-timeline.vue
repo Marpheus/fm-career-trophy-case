@@ -60,7 +60,7 @@ const tagFor = (entry: TimelineEntry): string =>
     </header>
 
     <p v-if="!seasons.length" class="panel px-4 py-8 text-center text-sm text-bone/50">
-      No trophies yet. Win something and it lands here.
+      No trophies yet.
     </p>
 
     <ol v-else>
