@@ -1,9 +1,13 @@
 @import 'tailwindcss';
 
 @theme {
-  --font-display: 'Anton', 'Haettenschweiler', sans-serif;
-  --font-label: 'Barlow Condensed', 'Arial Narrow', sans-serif;
-  --font-sans: 'Barlow', system-ui, sans-serif;
+  /*
+   * TV broadcast graphics. Only the 800 weight of the display face is loaded, so every
+   * display text renders heavy without needing a weight class.
+   */
+  --font-display: 'Saira Extra Condensed', 'Arial Narrow', sans-serif;
+  --font-label: 'Saira Condensed', 'Arial Narrow', sans-serif;
+  --font-sans: 'Saira', system-ui, sans-serif;
 
   /* Broadcast palette: floodlit pitch at night. */
   --color-ground: #071c14;
