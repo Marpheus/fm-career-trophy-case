@@ -71,3 +71,6 @@ Commit only when asked. One logical change per commit; the message says why.
 - Register, login and save go through `checkRateLimit`. Login errors never reveal
   whether a username exists.
 - Secrets come from env vars only (`DATABASE_URL`); never commit `.env`.
+- Every account's trophy case is public and read-only at `/u/<username>`. On that path
+  `use-career` loads the profile instead of the viewer's own data and never saves; components
+  hide every editing control behind `isReadOnly`.

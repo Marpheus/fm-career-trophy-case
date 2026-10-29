@@ -54,6 +54,15 @@ export const logout = () => request<Account>('/api/logout', { method: 'POST' })
 
 export const fetchTrophyCase = () => request<StoredTrophyCase>('/api/state')
 
+interface Profile {
+  readonly username: string
+  /** Null until the account has saved anything. */
+  readonly state: PersistedState | null
+}
+
+export const fetchProfile = (username: string) =>
+  request<Profile>(`/api/profile/${encodeURIComponent(username)}`)
+
 /** `keepalive` lets a save started while the tab closes still reach the server. */
 export const saveTrophyCase = async (
   state: PersistedState,

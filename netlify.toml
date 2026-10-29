@@ -1,3 +1,9 @@
 [build]
   command = "npm run build"
   publish = "dist"
+
+# Public profiles are the same single page, reading the username from the path.
+[[redirects]]
+  from = "/u/*"
+  to = "/index.html"
+  status = 200

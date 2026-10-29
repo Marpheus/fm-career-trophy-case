@@ -11,7 +11,7 @@ import SeasonSelect from './season-select.vue'
 const props = defineProps<{ code: string }>()
 const emit = defineEmits<{ close: [] }>()
 
-const { winsByCompetition, addWin, removeWin } = useCareer()
+const { winsByCompetition, addWin, removeWin, isReadOnly } = useCareer()
 const { lastStartYear, lastClub, remember } = useEntryDefaults()
 
 const startYear = ref(lastStartYear.value)
@@ -33,7 +33,7 @@ watch(
     stage.value = stages.value[0] ?? ''
     club.value = lastClub.value
     // On touch, focusing would throw up the keyboard over the sheet before anything is tapped.
-    if (!window.matchMedia('(pointer: fine)').matches) return
+    if (isReadOnly || !window.matchMedia('(pointer: fine)').matches) return
     await nextTick()
     clubInput.value?.focus()
     clubInput.value?.select()
@@ -103,7 +103,11 @@ const handleSubmit = () => {
         }}
       </p>
 
-      <form class="mt-4 flex items-center gap-1.5" @submit.prevent="handleSubmit">
+      <form
+        v-if="!isReadOnly"
+        class="mt-4 flex items-center gap-1.5"
+        @submit.prevent="handleSubmit"
+      >
         <SeasonSelect v-model="startYear" :format="league.seasonFormat" class="w-28 text-sm" />
         <select
           v-if="stages.length"
@@ -133,6 +137,7 @@ const handleSubmit = () => {
           <span v-if="title.stage" class="label-caps text-xs text-amber/70">{{ title.stage }}</span>
           <span class="truncate text-bone/70">{{ title.club }}</span>
           <button
+            v-if="!isReadOnly"
             type="button"
             class="ml-auto text-bone/40 opacity-0 transition-opacity group-hover:opacity-100 focus:opacity-100 hover:text-orange pointer-coarse:px-2 pointer-coarse:opacity-100"
             :aria-label="`Remove ${title.season}${title.stage ? ` ${title.stage}` : ''} title`"

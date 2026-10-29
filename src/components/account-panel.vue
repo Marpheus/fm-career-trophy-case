@@ -2,6 +2,7 @@
 import { computed, ref } from 'vue'
 import { flushCloudSave, useCareer, type SyncStatus } from '../composables/use-career'
 import { useAccount } from '../composables/use-account'
+import { profilePath } from '../profile-path'
 
 type Mode = 'login' | 'register'
 
@@ -60,6 +61,7 @@ const handleLogout = async () => {
       <span class="label-caps min-w-0 truncate text-xs text-bone/60" aria-live="polite">
         <span class="text-amber">{{ username }}</span> · {{ statusLabel }}
       </span>
+      <a :href="profilePath(username)" class="btn px-3 py-1.5 text-xs">Profile</a>
       <button type="button" class="btn px-3 py-1.5 text-xs" @click="handleLogout">Sign out</button>
     </template>
     <button

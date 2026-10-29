@@ -23,6 +23,8 @@ leagues stays dark.
 - **Accounts optional** — use it signed out and everything stays in your browser, or create
   an account (username + password) and your trophy case is saved to the database and follows
   you to any device. JSON export and import still work as backups.
+- **Public profiles** — every account's trophy case can be viewed read-only at
+  `/u/<username>`, so you can share your save.
 
 ## Tech stack
 

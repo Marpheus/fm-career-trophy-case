@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { nextTick, ref } from 'vue'
 import type { Win } from '../types'
+import { isReadOnly } from '../composables/use-career'
 import { useEntryDefaults } from '../composables/use-entry-defaults'
 import { NATIONS } from '../data/nations'
 import { seasonLabel, type SeasonFormat } from '../data/seasons'
@@ -77,6 +78,7 @@ const handleSubmit = () => {
       </div>
       <span v-if="wins.length" class="led text-sm">×{{ wins.length }}</span>
       <button
+        v-if="!isReadOnly"
         type="button"
         class="btn size-6 shrink-0 text-sm leading-none pointer-coarse:size-8"
         :aria-label="`Add a win for ${name}`"
@@ -91,6 +93,7 @@ const handleSubmit = () => {
         <span class="font-display tabular-nums text-amber/85">{{ win.season }}</span>
         <span class="truncate text-bone/65">{{ win.club }}</span>
         <button
+          v-if="!isReadOnly"
           type="button"
           class="ml-auto text-bone/40 opacity-0 transition-opacity group-hover:opacity-100 focus:opacity-100 hover:text-orange pointer-coarse:px-2 pointer-coarse:opacity-100"
           :aria-label="`Remove ${win.season} ${name}`"

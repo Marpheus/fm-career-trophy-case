@@ -1,6 +1,7 @@
 import { computed, reactive, readonly, ref, watch } from 'vue'
-import { fetchTrophyCase, saveTrophyCase } from '../api'
+import { fetchProfile, fetchTrophyCase, saveTrophyCase } from '../api'
 import { isPersistedState } from '../persisted-state'
+import { profileFromPath } from '../profile-path'
 import type { Career, Competition, PersistedState, Win } from '../types'
 import { useAccount } from './use-account'
 import { COMPETITIONS, CONTINENTAL } from '../data/competitions'
@@ -44,8 +45,26 @@ const saveLocal = () => {
   }
 }
 
+/** Set on /u/<username>: someone's public trophy case, shown read-only and never saved. */
+export const viewedUsername = profileFromPath(window.location.pathname)
+export const isReadOnly = viewedUsername !== null
+
 // Module-level singleton: one career state shared by every component.
-const state = reactive<PersistedState>(loadLocal())
+const state = reactive<PersistedState>(isReadOnly ? emptyState() : loadLocal())
+
+export type ProfileStatus = 'loading' | 'ready' | 'missing' | 'error'
+
+const profileStatus = ref<ProfileStatus>('loading')
+
+const loadProfile = async (name: string) => {
+  const result = await fetchProfile(name)
+  if (!result.ok) {
+    profileStatus.value = result.status === 404 ? 'missing' : 'error'
+    return
+  }
+  if (result.data.state) Object.assign(state, result.data.state)
+  profileStatus.value = 'ready'
+}
 
 /*
  * Persistence. Signed out, the trophy case lives in localStorage as it always has. Signed
@@ -137,19 +156,25 @@ const handleSignOut = () => {
   Object.assign(state, loadLocal())
 }
 
-watch(username, (name) => (name ? void handleSignIn() : handleSignOut()))
+const startPersistence = () => {
+  watch(username, (name) => (name ? void handleSignIn() : handleSignOut()))
 
-watch(
-  () => state,
-  () => (username.value ? scheduleCloudSave() : saveLocal()),
-  { deep: true },
-)
+  watch(
+    () => state,
+    () => (username.value ? scheduleCloudSave() : saveLocal()),
+    { deep: true },
+  )
 
-// Closing the tab inside the save delay would otherwise lose the last edit.
-window.addEventListener('pagehide', () => {
-  if (!username.value || !isDirty()) return
-  void saveTrophyCase(JSON.parse(JSON.stringify(state)) as PersistedState, revision, true)
-})
+  // Closing the tab inside the save delay would otherwise lose the last edit.
+  window.addEventListener('pagehide', () => {
+    if (!username.value || !isDirty()) return
+    void saveTrophyCase(JSON.parse(JSON.stringify(state)) as PersistedState, revision, true)
+  })
+}
+
+// A profile never touches the viewer's own trophy case, signed in or not.
+if (viewedUsername) void loadProfile(viewedUsername)
+else startPersistence()
 
 const COMPETITION_BY_ID = new Map<string, Competition>(COMPETITIONS.map((c) => [c.id, c]))
 const INTERNATIONAL_IDS: ReadonlySet<string> = new Set(INTERNATIONAL.map((cup) => cup.id))
@@ -252,6 +277,9 @@ export const useCareer = () => {
   }
 
   return {
+    isReadOnly,
+    viewedUsername,
+    profileStatus: readonly(profileStatus),
     syncStatus: readonly(syncStatus),
     career,
     wins,
