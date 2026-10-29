@@ -1,4 +1,5 @@
 import type { Config, Context } from '@netlify/functions'
+import { summarizeCareer } from '../../src/career-summary'
 import type { PersistedState } from '../../src/types'
 import { normalizeUsername } from '../lib/credentials'
 import { db } from '../lib/db'
@@ -24,7 +25,14 @@ export default async (_req: Request, context: Context): Promise<Response> => {
   `) as ProfileRow[]
   if (!rows[0]) return errorResponse(404, 'No such manager.')
 
-  return jsonResponse(rows[0], { headers: { 'Cache-Control': 'public, max-age=60' } })
+  const { username, state } = rows[0]
+  const career = state?.careers.find((c) => c.id === state.activeCareerId) ?? state?.careers[0]
+  // Precomputed for the link-preview edge function, which cannot import the app's data.
+  const summary = summarizeCareer(career?.wins ?? [])
+  return jsonResponse(
+    { username, state, summary },
+    { headers: { 'Cache-Control': 'public, max-age=60' } },
+  )
 }
 
 export const config: Config = { path: '/api/profile/:username', method: 'GET' }

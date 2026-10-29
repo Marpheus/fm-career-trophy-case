@@ -74,3 +74,8 @@ Commit only when asked. One logical change per commit; the message says why.
 - Every account's trophy case is public and read-only at `/u/<username>`. On that path
   `use-career` loads the profile instead of the viewer's own data and never saves; components
   hide every editing control behind `isReadOnly`.
+- `netlify/edge-functions/link-preview.ts` adds Open Graph tags to `/` and `/u/*` so shared
+  links unfurl. It runs on Deno, which cannot resolve the app's extensionless imports, so it
+  imports nothing; profile numbers come precomputed (`summary`) from `/api/profile`, built by
+  `src/career-summary.ts` — the same function the stats strip uses. The card image
+  `public/og.png` is static.

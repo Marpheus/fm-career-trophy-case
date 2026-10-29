@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { COMPETITIONS, CONTINENTAL } from '../data/competitions'
-import { INTERNATIONAL, WORLD_CUP_ID } from '../data/international'
+import { summarizeCareer } from '../career-summary'
+import { WORLD_CUP_ID } from '../data/international'
 import { NATION_BY_CODE, NATION_CONFEDERATIONS } from '../data/nations'
 import { PLAYABLE_NATIONS } from '../data/playable'
 import type { NationConfederation } from '../types'
@@ -28,26 +28,10 @@ const byConfederation = computed(() => {
   }))
 })
 
-const conqueredCount = computed(
-  () => [...conqueredNations.value].filter((code) => leagueNations.has(code)).length,
-)
+const summary = computed(() => summarizeCareer(wins.value))
 
-const percent = computed(() => Math.round((conqueredCount.value / leagueNations.size) * 100))
-
-const internationalWon = computed(
-  () => INTERNATIONAL.filter((competition) => winsByCompetition.value.has(competition.id)).length,
-)
-
-const CLUB_COMPETITION_IDS: ReadonlySet<string> = new Set(
-  [...COMPETITIONS, ...CONTINENTAL].map((competition) => competition.id),
-)
-
-/**
- * Club titles only - national team trophies have their own counter. Wins of competitions
- * since dropped from the data (the Club World Cup) no longer count.
- */
-const clubTitles = computed(
-  () => wins.value.filter((win) => CLUB_COMPETITION_IDS.has(win.competitionId)).length,
+const percent = computed(() =>
+  Math.round((summary.value.conquered / summary.value.conquerable) * 100),
 )
 
 const CARD = [
@@ -68,7 +52,8 @@ const worldCups = computed(() => winsByCompetition.value.get(WORLD_CUP_ID)?.leng
       <div class="min-w-0 flex-1">
         <p :class="CARD_LABEL">Nations conquered</p>
         <p class="led mt-0.5 text-3xl leading-none sm:text-4xl">
-          {{ conqueredCount }}<span class="text-xl text-bone/35">/{{ leagueNations.size }}</span>
+          {{ summary.conquered
+          }}<span class="text-xl text-bone/35">/{{ summary.conquerable }}</span>
         </p>
       </div>
       <div class="h-1.5 w-full shrink-0 bg-ground sm:w-24 sm:self-end">
@@ -79,7 +64,7 @@ const worldCups = computed(() => winsByCompetition.value.get(WORLD_CUP_ID)?.leng
     <div :class="CARD" class="border-l-cyan">
       <div class="min-w-0 flex-1">
         <p :class="CARD_LABEL">Titles won</p>
-        <p class="led-cyan mt-0.5 text-3xl leading-none sm:text-4xl">{{ clubTitles }}</p>
+        <p class="led-cyan mt-0.5 text-3xl leading-none sm:text-4xl">{{ summary.clubTitles }}</p>
       </div>
       <p :class="CARD_NOTE" class="text-bone/45">{{ percent }}% of the world</p>
     </div>
@@ -88,8 +73,8 @@ const worldCups = computed(() => winsByCompetition.value.get(WORLD_CUP_ID)?.leng
       <div class="min-w-0 flex-1">
         <p :class="CARD_LABEL">International</p>
         <p class="led-orange mt-0.5 text-3xl leading-none sm:text-4xl">
-          {{ internationalWon
-          }}<span class="text-xl text-bone/35">/{{ INTERNATIONAL.length }}</span>
+          {{ summary.internationalWon
+          }}<span class="text-xl text-bone/35">/{{ summary.internationalTotal }}</span>
         </p>
       </div>
       <p :class="[CARD_NOTE, worldCups ? 'text-amber' : 'text-bone/45']">
